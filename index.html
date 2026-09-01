@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,106 +6,631 @@
 <title>BLOXMAXY</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap');
+
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif}
-header{position:fixed;top:0;left:0;width:100%;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:rgba(5,5,5,.95);border-bottom:1px solid #1b1b1b;z-index:100}
-.logo{font-size:22px;font-weight:900;letter-spacing:3px}.logo span{color:#00b7ff}
-nav{display:flex;align-items:center;gap:8px}
-nav a{color:#aaa;text-decoration:none;padding:10px;font-size:11px;font-weight:bold}
-nav a:hover{color:#00b7ff}
-.discord{background:#5865f2!important;color:white!important;border-radius:6px}
-.account-btn{background:#071017;color:#00b7ff;border:1px solid #174b62;border-radius:6px;padding:10px 14px;cursor:pointer;font-size:10px;font-weight:bold}
-.menu-btn{display:none;background:#101820;border:1px solid #23404f;color:white;padding:9px 12px;border-radius:5px;cursor:pointer}
 
-.hero{min-height:100vh;padding:150px 7% 100px;display:flex;align-items:center}
-.hero-content{max-width:850px}.mini,.label{color:#00b7ff;font-size:10px;font-weight:bold;letter-spacing:3px}
-.hero h1{margin-top:18px;font-size:clamp(55px,9vw,125px);line-height:.9;letter-spacing:-6px}
-.hero h1 span{color:#00b7ff}
-.hero p{max-width:600px;margin-top:28px;color:#777;line-height:1.8;font-size:13px}
-.buttons{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
-.btn{display:inline-flex;justify-content:center;align-items:center;padding:14px 20px;border-radius:5px;border:0;cursor:pointer;text-decoration:none;font-size:10px;font-weight:bold}
-.primary{background:#00b7ff;color:#001018}.outline{background:transparent;color:#fff;border:1px solid #34434c}
+:root{
+ --bg:#050505;
+ --card:#0a0d11;
+ --blue:#00b7ff;
+ --blue2:#006eff;
+ --white:#fff;
+ --muted:#77818c;
+ --line:rgba(255,255,255,.09);
+ --red:#ff4d5e;
+ --green:#48ff9b;
+}
 
-.section{max-width:1400px;margin:auto;padding:100px 7%}
-.section h2{margin-top:10px;font-size:35px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:35px}
-.card{min-height:210px;background:#0a0d11;border:1px solid #171d22;padding:25px;transition:.2s}
-.card:hover{transform:translateY(-4px);border-color:#00b7ff}
-.card-icon{font-size:42px;margin:25px 0}
-.card h3{font-size:15px}.card p{color:#69747e;font-size:11px;line-height:1.7;margin-top:8px}
+html{scroll-behavior:smooth}
 
-.rank{margin-top:35px;border:1px solid #171d22;background:#090c10}
-.rank-row{display:flex;align-items:center;gap:15px;padding:18px;border-bottom:1px solid #171d22}
-.rank-row:last-child{border:0}.place{width:30px;color:#68717a;font-weight:bold}
-.avatar{width:38px;height:38px;border-radius:50%;background:#101c25;display:flex;align-items:center;justify-content:center}
-.rank-name{flex:1}.rank-name strong{display:block;font-size:12px}.rank-name small{color:#68737d;font-size:9px}
-.xp{color:#00b7ff;font-size:10px;font-weight:bold}
+body{
+ background:var(--bg);
+ color:var(--white);
+ font-family:Inter,Arial,sans-serif;
+ overflow-x:hidden;
+}
 
-.discord-box{text-align:center;padding:65px 20px;background:#080b10;border:1px solid #252c45}
-.discord-box p{max-width:550px;margin:15px auto 25px;color:#777;line-height:1.8;font-size:12px}
-footer{border-top:1px solid #171717;padding:35px 7%;display:flex;justify-content:space-between;color:#555;font-size:10px}
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ z-index:-2;
+ background:
+ radial-gradient(circle at 85% 10%,rgba(0,183,255,.10),transparent 30%),
+ radial-gradient(circle at 10% 80%,rgba(0,110,255,.06),transparent 30%);
+}
 
-/* MODAIS */
-.modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);align-items:center;justify-content:center;padding:20px}
+header{
+ position:fixed;
+ top:0;
+ left:0;
+ right:0;
+ height:74px;
+ z-index:100;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 5%;
+ background:rgba(5,5,5,.82);
+ backdrop-filter:blur(16px);
+ border-bottom:1px solid var(--line);
+}
+
+.logo{
+ font-family:Orbitron;
+ font-weight:900;
+ letter-spacing:3px;
+ font-size:21px;
+}
+
+.logo span{
+ color:var(--blue);
+ text-shadow:0 0 25px rgba(0,183,255,.5);
+}
+
+nav{
+ display:flex;
+ align-items:center;
+ gap:8px;
+}
+
+nav a{
+ text-decoration:none;
+ color:#8d949c;
+ font-size:10px;
+ font-weight:800;
+ padding:10px;
+ transition:.2s;
+}
+
+nav a:hover{color:white}
+
+.discord{
+ background:#5865f2!important;
+ color:white!important;
+ border-radius:6px;
+}
+
+.account{
+ border:1px solid #16475d;
+ background:#071017;
+ color:var(--blue);
+ border-radius:6px;
+ padding:10px 14px;
+ font-size:10px;
+ font-weight:900;
+ cursor:pointer;
+}
+
+.mobile-menu{
+ display:none;
+ background:#081018;
+ color:white;
+ border:1px solid #1c3542;
+ padding:9px 12px;
+ border-radius:5px;
+ cursor:pointer;
+}
+
+.hero{
+ min-height:100vh;
+ display:flex;
+ align-items:center;
+ padding:130px 6% 100px;
+ position:relative;
+}
+
+.hero-content{max-width:850px}
+
+.mini{
+ color:#73dfff;
+ font-size:10px;
+ font-weight:900;
+ letter-spacing:2px;
+}
+
+.hero h1{
+ margin-top:18px;
+ font-family:Orbitron;
+ font-size:clamp(60px,10vw,140px);
+ line-height:.85;
+ letter-spacing:-7px;
+}
+
+.hero h1 span{
+ color:var(--blue);
+ text-shadow:0 0 45px rgba(0,183,255,.4);
+}
+
+.hero p{
+ margin-top:28px;
+ max-width:580px;
+ color:#858e98;
+ font-size:13px;
+ line-height:1.8;
+}
+
+.buttons{
+ display:flex;
+ gap:10px;
+ margin-top:28px;
+ flex-wrap:wrap;
+}
+
+.btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ padding:14px 20px;
+ border:0;
+ border-radius:5px;
+ cursor:pointer;
+ text-decoration:none;
+ font-size:10px;
+ font-weight:900;
+ letter-spacing:1px;
+}
+
+.primary{
+ background:var(--blue);
+ color:#001018;
+}
+
+.primary:hover{
+ background:white;
+}
+
+.outline{
+ border:1px solid #293943;
+ color:white;
+ background:transparent;
+}
+
+.stats{
+ position:absolute;
+ bottom:40px;
+ left:6%;
+ display:flex;
+ gap:35px;
+}
+
+.stats strong{
+ display:block;
+ font-family:Orbitron;
+}
+
+.stats small{
+ color:#68717b;
+ font-size:8px;
+ text-transform:uppercase;
+}
+
+.section{
+ max-width:1400px;
+ margin:auto;
+ padding:100px 6%;
+}
+
+.section-title{
+ margin-bottom:35px;
+}
+
+.section-label{
+ color:var(--blue);
+ font-family:Orbitron;
+ font-size:10px;
+ letter-spacing:2px;
+}
+
+.section h2{
+ margin-top:10px;
+ font-family:Orbitron;
+ font-size:34px;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
+}
+
+.card{
+ min-height:230px;
+ padding:25px;
+ background:var(--card);
+ border:1px solid var(--line);
+ transition:.25s;
+}
+
+.card:hover{
+ border-color:rgba(0,183,255,.5);
+ transform:translateY(-4px);
+}
+
+.card-icon{
+ font-size:45px;
+ margin:20px 0;
+}
+
+.card h3{
+ font-family:Orbitron;
+ font-size:16px;
+}
+
+.card p{
+ margin-top:8px;
+ color:#68727c;
+ font-size:11px;
+ line-height:1.7;
+}
+
+.rank{
+ border:1px solid var(--line);
+ background:#090c10;
+}
+
+.rank-row{
+ min-height:70px;
+ padding:0 22px;
+ display:flex;
+ align-items:center;
+ gap:18px;
+ border-bottom:1px solid var(--line);
+}
+
+.rank-row:last-child{border-bottom:0}
+
+.place{
+ width:30px;
+ color:#4d555d;
+ font-family:Orbitron;
+}
+
+.avatar{
+ width:36px;
+ height:36px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#101b24;
+ border-radius:50%;
+}
+
+.rank-name{flex:1}
+
+.rank-name strong{
+ display:block;
+ font-size:12px;
+}
+
+.rank-name small{
+ color:#66717b;
+ font-size:9px;
+}
+
+.xp{
+ color:var(--blue);
+ font-family:Orbitron;
+ font-size:10px;
+}
+
+.discord-box{
+ text-align:center;
+ padding:65px 20px;
+ background:radial-gradient(circle at 50% 0,rgba(88,101,242,.18),transparent 45%),#080b10;
+ border:1px solid rgba(88,101,242,.25);
+}
+
+.discord-box p{
+ max-width:500px;
+ margin:15px auto 25px;
+ color:#747e89;
+ font-size:12px;
+ line-height:1.8;
+}
+
+footer{
+ border-top:1px solid var(--line);
+ padding:35px 6%;
+ display:flex;
+ justify-content:space-between;
+ color:#59616a;
+ font-size:9px;
+}
+
+/* MODAL */
+
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:1000;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ background:rgba(0,0,0,.85);
+ backdrop-filter:blur(10px);
+}
+
 .modal.active{display:flex}
-.box{width:100%;max-width:460px;background:#090d12;border:1px solid #164b63;padding:30px}
-.modal-head{display:flex;align-items:center;justify-content:space-between}
-.modal-head h2{font-size:21px}
-.close{width:35px;height:35px;background:#11171c;border:1px solid #29353c;color:#fff;cursor:pointer;border-radius:5px}
-.subtitle{color:#68737d;font-size:11px;line-height:1.7;margin:10px 0 20px}
-.tabs{display:grid;grid-template-columns:1fr 1fr}.tab{padding:12px;background:#070a0d;border:1px solid #1b303c;color:#68737d;cursor:pointer;font-size:10px;font-weight:bold}
-.tab.active{background:#00b7ff;color:#001018}
-.form{display:none}.form.active{display:block}
-label{display:block;color:#71808b;font-size:9px;font-weight:bold;margin:13px 0 6px}
-input,textarea,select{width:100%;padding:13px;background:#03070b;border:1px solid #1b3544;color:white;outline:none;border-radius:5px}
-textarea{min-height:100px;resize:vertical}
-input:focus,textarea:focus,select:focus{border-color:#00b7ff}
-.message{min-height:20px;margin-top:10px;font-size:10px}
 
-.user-info{text-align:center}.user-icon{font-size:55px;margin:20px 0}
-.user-info h2{font-size:21px}.user-info p{color:#68737d;font-size:11px;margin:10px 0 22px}
+.box{
+ width:100%;
+ max-width:440px;
+ padding:30px;
+ background:#090d12;
+ border:1px solid #17465e;
+ box-shadow:0 25px 100px rgba(0,0,0,.7);
+}
 
-/* ADM */
-.admin-box{width:100%;max-width:1050px;max-height:92vh;overflow:auto;background:#080c10;border:1px solid #15516b;padding:30px}
-.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
-.admin-header h2{color:#00b7ff;margin-top:7px}
-.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.admin-stat{padding:20px;background:#0c1218;border:1px solid #182127}
-.admin-stat strong{display:block;color:#00b7ff;font-size:21px}.admin-stat span{color:#68737d;font-size:9px}
-.admin-tabs{display:flex;gap:5px;overflow:auto;margin:25px 0}
-.admin-tab{white-space:nowrap;background:#0b1116;color:#72808a;border:1px solid #1b303c;padding:12px;cursor:pointer;font-size:9px;font-weight:bold}
-.admin-tab.active{background:#00b7ff;color:#001018}
-.admin-page{display:none}.admin-page.active{display:block}
-.admin-card{background:#0b1116;border:1px solid #182127;padding:20px;margin-bottom:12px}
-.admin-card h3{font-size:14px;margin-bottom:15px;color:#00b7ff}
-.admin-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
-.admin-row>*{flex:1}
-.admin-action{background:#00b7ff;color:#001018;border:0;border-radius:5px;padding:11px;cursor:pointer;font-size:9px;font-weight:bold}
-.red{background:#291015;color:#ff6675;border:1px solid #632832}
-.green{background:#103021;color:#48ff9b;border:1px solid #245e3d}
-.user-table{border:1px solid #182127}
-.user-line{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid #182127}
-.user-line:last-child{border:0}.user-info-line{flex:1}.user-info-line strong{display:block;font-size:11px}.user-info-line small{color:#65717b;font-size:8px}
-.admin-badge{display:inline-block;margin-left:6px;padding:3px 6px;border-radius:4px;background:#00b7ff;color:#001018;font-size:7px;font-weight:bold}
-.no-users{padding:30px;text-align:center;color:#68737d;font-size:11px}
-.admin-list{display:grid;gap:8px}
-.admin-list-item{display:flex;align-items:center;gap:10px;padding:12px;background:#070b0f;border:1px solid #172229}
-.admin-list-item span{flex:1;font-size:11px}
-.small-btn{padding:8px 10px;background:#101820;color:white;border:1px solid #29404d;border-radius:4px;cursor:pointer;font-size:8px}
+.head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
 
-.mobile-nav{display:none}
+.head h2{
+ font-family:Orbitron;
+ font-size:21px;
+}
+
+.close{
+ width:36px;
+ height:36px;
+ background:#10161c;
+ border:1px solid #27353e;
+ color:white;
+ cursor:pointer;
+ border-radius:5px;
+}
+
+.subtitle{
+ color:#697680;
+ font-size:11px;
+ line-height:1.7;
+ margin:10px 0 20px;
+}
+
+.tabs{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ margin-bottom:18px;
+}
+
+.tab{
+ padding:12px;
+ background:#070a0d;
+ color:#697680;
+ border:1px solid #1b303c;
+ cursor:pointer;
+ font-size:10px;
+ font-weight:900;
+}
+
+.tab.active{
+ background:var(--blue);
+ color:#001018;
+}
+
+.form{display:none}
+.form.active{display:block}
+
+label{
+ display:block;
+ margin:12px 0 6px;
+ color:#71808b;
+ font-size:9px;
+ font-weight:900;
+ text-transform:uppercase;
+}
+
+input{
+ width:100%;
+ padding:13px;
+ background:#03070b;
+ border:1px solid #1b3544;
+ color:white;
+ outline:none;
+ border-radius:5px;
+}
+
+input:focus{border-color:var(--blue)}
+
+.message{
+ min-height:20px;
+ margin-top:10px;
+ font-size:10px;
+}
+
+.user-info{text-align:center}
+
+.user-icon{
+ font-size:55px;
+ margin:15px 0;
+}
+
+.user-info h2{
+ font-family:Orbitron;
+ font-size:20px;
+}
+
+.user-info p{
+ color:#6e7983;
+ font-size:11px;
+ margin:10px 0 22px;
+}
+
+/* ADMIN */
+
+.admin-box{
+ width:100%;
+ max-width:900px;
+ max-height:90vh;
+ overflow:auto;
+ padding:30px;
+ background:#080c10;
+ border:1px solid #164e68;
+}
+
+.admin-header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+ margin-bottom:25px;
+}
+
+.admin-header h2{
+ font-family:Orbitron;
+ font-size:23px;
+ color:var(--blue);
+}
+
+.admin-stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ margin-bottom:20px;
+}
+
+.admin-stat{
+ padding:20px;
+ background:#0c1218;
+ border:1px solid var(--line);
+}
+
+.admin-stat strong{
+ display:block;
+ font-family:Orbitron;
+ font-size:22px;
+ color:var(--blue);
+}
+
+.admin-stat span{
+ color:#68737e;
+ font-size:9px;
+ text-transform:uppercase;
+}
+
+.user-search{
+ margin-bottom:15px;
+}
+
+.user-table{
+ border:1px solid var(--line);
+}
+
+.user-line{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ padding:14px;
+ border-bottom:1px solid var(--line);
+}
+
+.user-line:last-child{border-bottom:0}
+
+.user-line-name{
+ flex:1;
+}
+
+.user-line-name strong{
+ display:block;
+ font-size:11px;
+}
+
+.user-line-name small{
+ color:#626d77;
+ font-size:8px;
+}
+
+.delete-btn{
+ background:#271014;
+ border:1px solid #63232d;
+ color:#ff6877;
+ padding:8px 10px;
+ border-radius:4px;
+ cursor:pointer;
+ font-size:9px;
+ font-weight:900;
+}
+
+.no-users{
+ padding:30px;
+ text-align:center;
+ color:#68737e;
+ font-size:11px;
+}
+
+.admin-login-box{
+ max-width:400px;
+}
+
+/* MOBILE */
 
 @media(max-width:850px){
-nav a{display:none}.menu-btn{display:block}.grid{grid-template-columns:1fr 1fr}
+
+ nav a{display:none}
+
+ .mobile-menu{
+  display:block;
+ }
+
+ nav{
+  gap:5px;
+ }
+
+ .account{
+  display:block;
+ }
+
+ .grid{
+  grid-template-columns:1fr 1fr;
+ }
+
 }
+
 @media(max-width:600px){
-header{padding:0 15px}.hero{padding:120px 20px 100px}.hero h1{font-size:55px;letter-spacing:-4px}
-.section{padding:70px 20px}.grid{grid-template-columns:1fr}
-.admin-stats{grid-template-columns:1fr 1fr}.admin-box{padding:18px}
-.admin-row{display:block}.admin-row>*{margin-bottom:8px}
-footer{display:block;text-align:center}footer div+div{margin-top:10px}
-.mobile-nav.active{display:flex;position:fixed;top:70px;left:0;right:0;flex-direction:column;background:#080b0e;border-bottom:1px solid #1b303c;padding:10px;z-index:99}
-.mobile-nav a{color:#aaa;text-decoration:none;padding:14px;font-size:11px;border-bottom:1px solid #151b20}
+
+ header{
+  padding:0 15px;
+ }
+
+ .hero{
+  padding:110px 20px 140px;
+ }
+
+ .hero h1{
+  font-size:55px;
+  letter-spacing:-4px;
+ }
+
+ .stats{
+  left:20px;
+  gap:18px;
+ }
+
+ .section{
+  padding:70px 20px;
+ }
+
+ .grid{
+  grid-template-columns:1fr;
+ }
+
+ .admin-stats{
+  grid-template-columns:1fr;
+ }
+
+ footer{
+  display:block;
+  text-align:center;
+ }
+
+ footer div+div{
+  margin-top:10px;
+ }
 }
 </style>
 </head>
@@ -114,1047 +638,1188 @@ footer{display:block;text-align:center}footer div+div{margin-top:10px}
 <body>
 
 <header>
-<div class="logo">BLOX<span>MAXY</span></div>
 
-<nav>
-<a href="#equipe">Equipe</a>
-<a href="#ranking">Ranking</a>
-<a href="#eventos">Eventos</a>
-<a href="#regras">Regras</a>
+ <div class="logo">
+  BLOX<span>MAXY</span>
+ </div>
 
-<a class="discord" href="https://discord.gg/pMgwP3KVC" target="_blank">💬 DISCORD</a>
+ <nav>
 
-<button class="account-btn" id="accountBtn">👤 ENTRAR</button>
-<button class="menu-btn" id="menuBtn">☰</button>
-</nav>
+  <a href="#equipe">Equipe</a>
+  <a href="#ranking">Ranking</a>
+  <a href="#eventos">Eventos</a>
+  <a href="#regras">Regras</a>
+
+  <a
+   class="discord"
+   href="https://discord.gg/pMgwP3KVC"
+   target="_blank"
+   rel="noopener">
+   💬 DISCORD
+  </a>
+
+  <button class="account" id="accountBtn">
+   👤 ENTRAR
+  </button>
+
+ </nav>
+
 </header>
 
-<div class="mobile-nav" id="mobileNav">
-<a href="#equipe">EQUIPE</a>
-<a href="#ranking">RANKING</a>
-<a href="#eventos">EVENTOS</a>
-<a href="#regras">REGRAS</a>
-<a href="https://discord.gg/pMgwP3KVC" target="_blank">💬 DISCORD</a>
-</div>
 
 <section class="hero">
-<div class="hero-content">
-<div class="mini">BLOXMAXY TEAM • 2026</div>
-<h1>WE ARE<br><span>BLOXMAXY</span></h1>
-<p>Uma comunidade criada para competir, evoluir e se divertir.</p>
-<div class="buttons">
-<a href="#equipe" class="btn primary">CONHECER EQUIPE</a>
-<a href="https://discord.gg/pMgwP3KVC" target="_blank" class="btn discord">💬 ENTRAR NO DISCORD</a>
-</div>
-</div>
+
+ <div class="hero-content">
+
+  <div class="mini">
+   BLOXMAXY TEAM • 2026
+  </div>
+
+  <h1>
+   WE ARE<br>
+   <span>BLOXMAXY</span>
+  </h1>
+
+  <p>
+   Uma equipe criada para competir, evoluir e construir
+   uma comunidade forte.
+  </p>
+
+  <div class="buttons">
+
+   <a href="#equipe" class="btn primary">
+    CONHECER EQUIPE
+   </a>
+
+   <a
+    href="https://discord.gg/pMgwP3KVC"
+    target="_blank"
+    class="btn discord">
+    💬 ENTRAR NO DISCORD
+   </a>
+
+  </div>
+
+ </div>
+
+ <div class="stats">
+
+  <div>
+   <strong>01</strong>
+   <small>Equipe</small>
+  </div>
+
+  <div>
+   <strong>24/7</strong>
+   <small>Comunidade</small>
+  </div>
+
+  <div>
+   <strong>2026</strong>
+   <small>Temporada</small>
+  </div>
+
+ </div>
+
 </section>
+
 
 <section class="section" id="equipe">
-<div class="label">01 / TEAM</div>
-<h2>NOSSA EQUIPE</h2>
-<div class="grid">
-<div class="card"><div>01</div><div class="card-icon">👑</div><h3>CEO</h3><p>Liderança da BLOXMAXY.</p></div>
-<div class="card"><div>02</div><div class="card-icon">⚡</div><h3>ADMIN</h3><p>Administração da comunidade.</p></div>
-<div class="card"><div>03</div><div class="card-icon">🛡️</div><h3>MOD</h3><p>Moderação dos membros.</p></div>
-<div class="card"><div>04</div><div class="card-icon">🎮</div><h3>MEMBER</h3><p>Membros da comunidade.</p></div>
-</div>
+
+ <div class="section-title">
+  <div class="section-label">01 / TEAM</div>
+  <h2>NOSSA EQUIPE</h2>
+ </div>
+
+ <div class="grid">
+
+  <div class="card">
+   <div>01</div>
+   <div class="card-icon">👑</div>
+   <h3>CEO</h3>
+   <p>Liderança da BLOXMAXY.</p>
+  </div>
+
+  <div class="card">
+   <div>02</div>
+   <div class="card-icon">⚡</div>
+   <h3>ADMIN</h3>
+   <p>Gerenciamento da comunidade.</p>
+  </div>
+
+  <div class="card">
+   <div>03</div>
+   <div class="card-icon">🛡️</div>
+   <h3>MOD</h3>
+   <p>Moderação e organização.</p>
+  </div>
+
+  <div class="card">
+   <div>04</div>
+   <div class="card-icon">🎮</div>
+   <h3>MEMBER</h3>
+   <p>Membros da equipe.</p>
+  </div>
+
+ </div>
+
 </section>
+
 
 <section class="section" id="ranking">
-<div class="label">02 / RANKING</div>
-<h2>TOP PLAYERS</h2>
-<div class="rank" id="rankingList"></div>
+
+ <div class="section-title">
+  <div class="section-label">02 / RANKING</div>
+  <h2>TOP PLAYERS</h2>
+ </div>
+
+ <div class="rank">
+
+  <div class="rank-row">
+   <div class="place">01</div>
+   <div class="avatar">👑</div>
+   <div class="rank-name">
+    <strong>MAXY_MASTER</strong>
+    <small>ELITE MEMBER</small>
+   </div>
+   <div class="xp">9850 XP</div>
+  </div>
+
+  <div class="rank-row">
+   <div class="place">02</div>
+   <div class="avatar">⚡</div>
+   <div class="rank-name">
+    <strong>BLOX_PLAYER</strong>
+    <small>VETERAN</small>
+   </div>
+   <div class="xp">8720 XP</div>
+  </div>
+
+  <div class="rank-row">
+   <div class="place">03</div>
+   <div class="avatar">🔥</div>
+   <div class="rank-name">
+    <strong>SHADOW_X</strong>
+    <small>MEMBER</small>
+   </div>
+   <div class="xp">7430 XP</div>
+  </div>
+
+ </div>
+
 </section>
+
 
 <section class="section" id="eventos">
-<div class="label">03 / EVENTS</div>
-<h2>EVENTOS</h2>
-<div class="grid" id="eventsList"></div>
+
+ <div class="section-title">
+  <div class="section-label">03 / EVENTS</div>
+  <h2>EVENTOS</h2>
+ </div>
+
+ <div class="grid">
+
+  <div class="card">
+   <div class="card-icon">🏆</div>
+   <h3>CAMPEONATO</h3>
+   <p>Torneios internos da BLOXMAXY.</p>
+  </div>
+
+  <div class="card">
+   <div class="card-icon">⚔️</div>
+   <h3>DESAFIO PVP</h3>
+   <p>Batalhas entre membros.</p>
+  </div>
+
+  <div class="card">
+   <div class="card-icon">🎯</div>
+   <h3>MISSÃO SEMANAL</h3>
+   <p>Desafios para ganhar XP.</p>
+  </div>
+
+  <div class="card">
+   <div class="card-icon">🔥</div>
+   <h3>EVENTO ESPECIAL</h3>
+   <p>Eventos especiais da comunidade.</p>
+  </div>
+
+ </div>
+
 </section>
+
 
 <section class="section" id="regras">
-<div class="label">04 / RULES</div>
-<h2>REGRAS</h2>
-<div class="grid">
-<div class="card"><h3>RESPEITO</h3><p>Respeite todos os membros.</p></div>
-<div class="card"><h3>FAIR PLAY</h3><p>Não utilize cheats ou exploits.</p></div>
-<div class="card"><h3>COMUNIDADE</h3><p>Não faça spam ou flood.</p></div>
-<div class="card"><h3>ROBLOX</h3><p>Respeite as regras da plataforma.</p></div>
-</div>
+
+ <div class="section-title">
+  <div class="section-label">04 / RULES</div>
+  <h2>REGRAS</h2>
+ </div>
+
+ <div class="grid">
+
+  <div class="card">
+   <h3>RESPEITO</h3>
+   <p>Respeite todos os membros.</p>
+  </div>
+
+  <div class="card">
+   <h3>FAIR PLAY</h3>
+   <p>Não utilize cheats ou exploits.</p>
+  </div>
+
+  <div class="card">
+   <h3>COMUNIDADE</h3>
+   <p>Não faça spam ou flood.</p>
+  </div>
+
+  <div class="card">
+   <h3>ROBLOX</h3>
+   <p>Respeite as regras da plataforma.</p>
+  </div>
+
+ </div>
+
 </section>
+
 
 <section class="section">
-<div class="discord-box">
-<div class="label">BLOXMAXY COMMUNITY</div>
-<h2>ENTRE PARA A COMUNIDADE</h2>
-<p>Entre no nosso Discord para conversar, participar dos eventos e acompanhar novidades.</p>
-<a href="https://discord.gg/pMgwP3KVC" target="_blank" class="btn discord">💬 ENTRAR NO DISCORD</a>
-</div>
+
+ <div class="discord-box">
+
+  <div class="section-label">
+   BLOXMAXY COMMUNITY
+  </div>
+
+  <h2>ENTRE PARA A COMUNIDADE</h2>
+
+  <p>
+   Entre no servidor PSW CHOPATS para conversar,
+   acompanhar novidades e participar dos eventos.
+  </p>
+
+  <a
+   href="https://discord.gg/pMgwP3KVC"
+   target="_blank"
+   class="btn discord">
+   💬 ENTRAR NO DISCORD
+  </a>
+
+ </div>
+
 </section>
 
+
 <footer>
-<div>© 2026 BLOXMAXY</div>
-<div>TEAM • COMMUNITY • COMPETITION</div>
+
+ <div>© 2026 <b>BLOXMAXY</b></div>
+ <div>TEAM • COMMUNITY • COMPETITION</div>
+
 </footer>
 
-<!-- LOGIN -->
+
+<!-- LOGIN / CADASTRO -->
 
 <div class="modal" id="authModal">
-<div class="box">
 
-<div class="modal-head">
-<h2>👤 CONTA</h2>
-<button class="close" id="closeAuth">✕</button>
+ <div class="box">
+
+  <div class="head">
+   <h2>👤 CONTA</h2>
+   <button class="close" id="closeAuth">✕</button>
+  </div>
+
+  <p class="subtitle">
+   Entre na sua conta ou crie uma nova conta BLOXMAXY.
+  </p>
+
+  <div class="tabs">
+
+   <button class="tab active" id="loginTab">
+    ENTRAR
+   </button>
+
+   <button class="tab" id="registerTab">
+    CRIAR CONTA
+   </button>
+
+  </div>
+
+
+  <form class="form active" id="loginForm">
+
+   <label>Usuário</label>
+
+   <input
+    id="loginUser"
+    type="text"
+    autocomplete="username"
+    required>
+
+   <label>Senha</label>
+
+   <input
+    id="loginPass"
+    type="password"
+    autocomplete="current-password"
+    required>
+
+   <button class="btn primary" style="width:100%;margin-top:18px">
+    ENTRAR
+   </button>
+
+   <div class="message" id="loginMessage"></div>
+
+  </form>
+
+
+  <form class="form" id="registerForm">
+
+   <label>Usuário</label>
+
+   <input
+    id="registerUser"
+    type="text"
+    minlength="3"
+    maxlength="20"
+    required>
+
+   <label>Senha</label>
+
+   <input
+    id="registerPass"
+    type="password"
+    minlength="4"
+    required>
+
+   <label>Confirmar senha</label>
+
+   <input
+    id="registerPass2"
+    type="password"
+    required>
+
+   <button class="btn primary" style="width:100%;margin-top:18px">
+    CRIAR CONTA
+   </button>
+
+   <div class="message" id="registerMessage"></div>
+
+  </form>
+
+ </div>
+
 </div>
 
-<p class="subtitle">Entre na sua conta ou crie uma nova conta BLOXMAXY.</p>
 
-<div class="tabs">
-<button class="tab active" id="loginTab">ENTRAR</button>
-<button class="tab" id="registerTab">CRIAR CONTA</button>
-</div>
-
-<form class="form active" id="loginForm">
-<label>Usuário</label>
-<input id="loginUser" type="text" required>
-
-<label>Senha</label>
-<input id="loginPass" type="password" required>
-
-<button type="submit" class="btn primary" style="width:100%;margin-top:18px">ENTRAR</button>
-<div class="message" id="loginMessage"></div>
-</form>
-
-<form class="form" id="registerForm">
-<label>Usuário</label>
-<input id="registerUser" type="text" minlength="3" maxlength="20" required>
-
-<label>Senha</label>
-<input id="registerPass" type="password" minlength="4" required>
-
-<label>Confirmar senha</label>
-<input id="registerPass2" type="password" required>
-
-<button type="submit" class="btn primary" style="width:100%;margin-top:18px">CRIAR CONTA</button>
-<div class="message" id="registerMessage"></div>
-</form>
-
-</div>
-</div>
-
-<!-- USUÁRIO -->
+<!-- CONTA DO USUÁRIO -->
 
 <div class="modal" id="userModal">
-<div class="box user-info">
-<div class="modal-head"><div></div><button class="close" id="closeUser">✕</button></div>
-<div class="user-icon">👤</div>
-<h2 id="welcomeUser"></h2>
-<p>Você está conectado à BLOXMAXY.</p>
-<button class="btn primary" id="logoutBtn" style="width:100%">🚪 SAIR</button>
-</div>
+
+ <div class="box user-info">
+
+  <div class="head">
+   <div></div>
+   <button class="close" id="closeUser">✕</button>
+  </div>
+
+  <div class="user-icon">👤</div>
+
+  <h2 id="welcomeUser">OLÁ!</h2>
+
+  <p>
+   Você está conectado à BLOXMAXY.
+  </p>
+
+  <button class="btn primary" id="logoutBtn" style="width:100%">
+   🚪 SAIR
+  </button>
+
+ </div>
+
 </div>
 
-<!-- ADM -->
+
+<!-- LOGIN ADM -->
+
+<div class="modal" id="adminLoginModal">
+
+ <div class="box admin-login-box">
+
+  <div class="head">
+   <h2>👑 ADMIN</h2>
+   <button class="close" id="closeAdminLogin">✕</button>
+  </div>
+
+  <p class="subtitle">
+   Área exclusiva de administração da BLOXMAXY.
+  </p>
+
+  <label>Senha do administrador</label>
+
+  <input
+   type="password"
+   id="adminPassword"
+   placeholder="Digite a senha">
+
+  <button
+   class="btn primary"
+   id="adminLoginBtn"
+   style="width:100%;margin-top:18px">
+   ENTRAR NO PAINEL
+  </button>
+
+  <div class="message" id="adminMessage"></div>
+
+ </div>
+
+</div>
+
+
+<!-- PAINEL ADM -->
 
 <div class="modal" id="adminModal">
-<div class="admin-box">
 
-<div class="admin-header">
-<div>
-<div class="label">BLOXMAXY SYSTEM</div>
-<h2>👑 PAINEL ADM</h2>
-</div>
-<button class="close" id="closeAdmin">✕</button>
-</div>
+ <div class="admin-box">
 
-<div class="admin-stats">
-<div class="admin-stat"><strong id="totalUsers">0</strong><span>Usuários</span></div>
-<div class="admin-stat"><strong id="loggedUser">---</strong><span>Logado</span></div>
-<div class="admin-stat"><strong id="totalEvents">0</strong><span>Eventos</span></div>
-<div class="admin-stat"><strong>100%</strong><span>Acesso ADM</span></div>
-</div>
+  <div class="admin-header">
 
-<div class="admin-tabs">
+   <div>
+    <div class="section-label">BLOXMAXY SYSTEM</div>
+    <h2>👑 PAINEL ADM</h2>
+   </div>
 
-<button class="admin-tab active" data-page="users">👥 USUÁRIOS</button>
-<button class="admin-tab" data-page="ranking">🏆 RANKING</button>
-<button class="admin-tab" data-page="events">🎮 EVENTOS</button>
-<button class="admin-tab" data-page="site">📢 SITE</button>
-<button class="admin-tab" data-page="settings">⚙️ CONFIGURAÇÕES</button>
+   <button class="close" id="closeAdmin">
+    ✕
+   </button>
 
-</div>
+  </div>
 
-<!-- USUÁRIOS -->
 
-<div class="admin-page active" id="page-users">
+  <div class="admin-stats">
 
-<div class="admin-card">
-<h3>👥 GERENCIAR USUÁRIOS</h3>
+   <div class="admin-stat">
+    <strong id="totalUsers">0</strong>
+    <span>Usuários</span>
+   </div>
 
-<input id="searchUsers" placeholder="🔎 Pesquisar usuário...">
+   <div class="admin-stat">
+    <strong id="onlineUser">0</strong>
+    <span>Logado agora</span>
+   </div>
 
-</div>
+   <div class="admin-stat">
+    <strong>ADM</strong>
+    <span>Status</span>
+   </div>
 
-<div class="user-table" id="userTable"></div>
+  </div>
 
-</div>
 
-<!-- RANKING -->
+  <div class="user-search">
 
-<div class="admin-page" id="page-ranking">
+   <input
+    id="searchUsers"
+    type="text"
+    placeholder="🔎 Pesquisar usuário...">
 
-<div class="admin-card">
+  </div>
 
-<h3>🏆 ADICIONAR PLAYER AO RANKING</h3>
 
-<div class="admin-row">
-<input id="rankName" placeholder="Nome do player">
-<input id="rankXp" type="number" placeholder="XP">
-<button class="admin-action" id="addRank">ADICIONAR</button>
-</div>
+  <div class="user-table" id="userTable"></div>
 
-</div>
 
-<div class="admin-card">
-<h3>PLAYERS</h3>
-<div class="admin-list" id="adminRankingList"></div>
-</div>
+  <button
+   class="btn outline"
+   id="adminLogoutBtn"
+   style="margin-top:18px">
+   🚪 SAIR DO ADM
+  </button>
+
+ </div>
 
 </div>
 
-<!-- EVENTOS -->
-
-<div class="admin-page" id="page-events">
-
-<div class="admin-card">
-
-<h3>🎮 CRIAR EVENTO</h3>
-
-<div class="admin-row">
-<input id="eventTitle" placeholder="Nome do evento">
-<input id="eventIcon" placeholder="Emoji" value="🏆">
-</div>
-
-<div class="admin-row">
-<input id="eventDescription" placeholder="Descrição">
-<button class="admin-action" id="addEvent">CRIAR EVENTO</button>
-</div>
-
-</div>
-
-<div class="admin-card">
-<h3>EVENTOS CRIADOS</h3>
-<div class="admin-list" id="adminEventsList"></div>
-</div>
-
-</div>
-
-<!-- SITE -->
-
-<div class="admin-page" id="page-site">
-
-<div class="admin-card">
-
-<h3>📢 EDITAR SITE</h3>
-
-<label>Título principal</label>
-<input id="siteTitle">
-
-<label>Texto principal</label>
-<textarea id="siteDescription"></textarea>
-
-<label>Texto do rodapé</label>
-<input id="siteFooter">
-
-<button class="admin-action" id="saveSite" style="margin-top:15px">
-💾 SALVAR ALTERAÇÕES
-</button>
-
-<div class="message" id="siteMessage"></div>
-
-</div>
-
-</div>
-
-<!-- CONFIGURAÇÕES -->
-
-<div class="admin-page" id="page-settings">
-
-<div class="admin-card">
-
-<h3>⚙️ CONFIGURAÇÕES</h3>
-
-<p style="color:#68737d;font-size:11px;line-height:1.8">
-Você possui acesso total ao painel administrativo.
-As alterações desta versão são armazenadas neste navegador.
-</p>
-
-<button class="admin-action red" id="clearAll" style="margin-top:20px">
-⚠️ APAGAR TODOS OS DADOS DO SITE
-</button>
-
-</div>
-
-<div class="admin-card">
-
-<h3>👑 CONTA DO PROPRIETÁRIO</h3>
-
-<p style="color:#68737d;font-size:11px">
-Usuário: <b style="color:#00b7ff">admenzo</b><br>
-Permissão: <b style="color:#48ff9b">ACESSO TOTAL</b>
-</p>
-
-</div>
-
-</div>
-
-<button class="btn outline" id="adminLogoutBtn" style="margin-top:18px">
-🚪 SAIR DO PAINEL
-</button>
-
-</div>
-</div>
 
 <script>
 
-/* ============================
-   CONFIGURAÇÃO ADM
-============================ */
+/* ==========================================
+   CONFIGURAÇÕES
+========================================== */
 
-const OWNER_USERNAME = "admenzo";
-const OWNER_PASSWORD = "souceo";
+const ADMIN_PASSWORD = "enzoebloxmaxy10";
 
 
-/* ============================
-   DADOS
-============================ */
+/* ==========================================
+   ELEMENTOS
+========================================== */
+
+const accountBtn =
+ document.getElementById("accountBtn");
+
+const authModal =
+ document.getElementById("authModal");
+
+const userModal =
+ document.getElementById("userModal");
+
+const adminLoginModal =
+ document.getElementById("adminLoginModal");
+
+const adminModal =
+ document.getElementById("adminModal");
+
+
+/* ==========================================
+   BANCO LOCAL
+========================================== */
 
 function getUsers(){
-    try{
-        return JSON.parse(localStorage.getItem("bloxmaxyUsers")) || [];
-    }catch{
-        return [];
-    }
+
+ try{
+  return JSON.parse(
+   localStorage.getItem("bloxmaxyUsers")
+  ) || [];
+ }catch{
+  return [];
+ }
+
 }
 
 function saveUsers(users){
-    localStorage.setItem("bloxmaxyUsers",JSON.stringify(users));
-}
 
-function getRanking(){
-    try{
-        return JSON.parse(localStorage.getItem("bloxmaxyRanking")) || [
-            {name:"MAXY_MASTER",xp:9850},
-            {name:"BLOX_PLAYER",xp:8720},
-            {name:"SHADOW_X",xp:7430}
-        ];
-    }catch{
-        return [];
-    }
-}
+ localStorage.setItem(
+  "bloxmaxyUsers",
+  JSON.stringify(users)
+ );
 
-function saveRanking(data){
-    localStorage.setItem("bloxmaxyRanking",JSON.stringify(data));
-}
-
-function getEvents(){
-    try{
-        return JSON.parse(localStorage.getItem("bloxmaxyEvents")) || [
-            {title:"CAMPEONATO",icon:"🏆",description:"Torneios internos da BLOXMAXY."},
-            {title:"DESAFIO PVP",icon:"⚔️",description:"Desafios entre membros."},
-            {title:"MISSÃO",icon:"🎯",description:"Missões especiais."},
-            {title:"EVENTO ESPECIAL",icon:"🔥",description:"Eventos da comunidade."}
-        ];
-    }catch{
-        return [];
-    }
-}
-
-function saveEvents(data){
-    localStorage.setItem("bloxmaxyEvents",JSON.stringify(data));
-}
-
-function getCurrentUser(){
-    return localStorage.getItem("bloxmaxyCurrentUser");
-}
-
-function setCurrentUser(user){
-    localStorage.setItem("bloxmaxyCurrentUser",user);
-}
-
-function logout(){
-    localStorage.removeItem("bloxmaxyCurrentUser");
-    updateAccountButton();
 }
 
 
-/* ============================
-   ELEMENTOS
-============================ */
+/* ==========================================
+   USUÁRIO LOGADO
+========================================== */
 
-const accountBtn=document.getElementById("accountBtn");
-const authModal=document.getElementById("authModal");
-const userModal=document.getElementById("userModal");
-const adminModal=document.getElementById("adminModal");
+function currentUser(){
+
+ return localStorage.getItem(
+  "bloxmaxyCurrentUser"
+ );
+
+}
+
+function loginUser(username){
+
+ localStorage.setItem(
+  "bloxmaxyCurrentUser",
+  username
+ );
+
+}
+
+function logoutUser(){
+
+ localStorage.removeItem(
+  "bloxmaxyCurrentUser"
+ );
+
+ updateAccountButton();
+
+}
 
 
-/* ============================
-   BOTÃO CONTA
-============================ */
+/* ==========================================
+   BOTÃO DA CONTA
+========================================== */
 
 function updateAccountButton(){
 
-    const user=getCurrentUser();
+ const user = currentUser();
 
-    if(!user){
-        accountBtn.textContent="👤 ENTRAR";
-        return;
-    }
+ if(user){
 
-    if(user.toLowerCase()===OWNER_USERNAME){
-        accountBtn.textContent="👑 ADM";
-    }else{
-        accountBtn.textContent="👤 "+user.toUpperCase();
-    }
-}
+  accountBtn.textContent =
+   "👤 " + user.toUpperCase();
 
-accountBtn.onclick=function(){
+ }else{
 
-    const user=getCurrentUser();
+  accountBtn.textContent =
+   "👤 ENTRAR";
 
-    if(!user){
-        authModal.classList.add("active");
-        return;
-    }
+ }
 
-    if(user.toLowerCase()===OWNER_USERNAME){
-        openAdmin();
-        return;
-    }
-
-    document.getElementById("welcomeUser").textContent=
-    "OLÁ, "+user.toUpperCase()+"!";
-
-    userModal.classList.add("active");
-};
-
-
-/* ============================
-   LOGIN / CADASTRO
-============================ */
-
-loginTab.onclick=function(){
-
-    loginTab.classList.add("active");
-    registerTab.classList.remove("active");
-
-    loginForm.classList.add("active");
-    registerForm.classList.remove("active");
-};
-
-registerTab.onclick=function(){
-
-    registerTab.classList.add("active");
-    loginTab.classList.remove("active");
-
-    registerForm.classList.add("active");
-    loginForm.classList.remove("active");
-};
-
-
-/* ============================
-   CADASTRO
-============================ */
-
-registerForm.onsubmit=function(e){
-
-    e.preventDefault();
-
-    const username=document.getElementById("registerUser").value.trim();
-    const password=document.getElementById("registerPass").value;
-    const password2=document.getElementById("registerPass2").value;
-    const message=document.getElementById("registerMessage");
-
-    if(username.toLowerCase()===OWNER_USERNAME){
-        message.style.color="#ff6675";
-        message.textContent="❌ Esse nome é reservado.";
-        return;
-    }
-
-    if(password!==password2){
-        message.style.color="#ff6675";
-        message.textContent="❌ As senhas não são iguais.";
-        return;
-    }
-
-    const users=getUsers();
-
-    if(users.some(u=>u.username.toLowerCase()===username.toLowerCase())){
-        message.style.color="#ff6675";
-        message.textContent="❌ Esse usuário já existe.";
-        return;
-    }
-
-    users.push({
-        username,
-        password,
-        role:"member",
-        createdAt:new Date().toISOString()
-    });
-
-    saveUsers(users);
-    setCurrentUser(username);
-
-    message.style.color="#48ff9b";
-    message.textContent="✅ Conta criada!";
-
-    setTimeout(()=>{
-        registerForm.reset();
-        authModal.classList.remove("active");
-        updateAccountButton();
-    },600);
-};
-
-
-/* ============================
-   LOGIN
-============================ */
-
-loginForm.onsubmit=function(e){
-
-    e.preventDefault();
-
-    const username=document.getElementById("loginUser").value.trim();
-    const password=document.getElementById("loginPass").value;
-    const message=document.getElementById("loginMessage");
-
-    if(
-        username.toLowerCase()===OWNER_USERNAME &&
-        password===OWNER_PASSWORD
-    ){
-
-        setCurrentUser(OWNER_USERNAME);
-
-        message.style.color="#48ff9b";
-        message.textContent="👑 ACESSO TOTAL AUTORIZADO!";
-
-        setTimeout(()=>{
-            loginForm.reset();
-            authModal.classList.remove("active");
-            updateAccountButton();
-            openAdmin();
-        },500);
-
-        return;
-    }
-
-    const user=getUsers().find(
-        u=>u.username.toLowerCase()===username.toLowerCase()
-        && u.password===password
-    );
-
-    if(!user){
-
-        message.style.color="#ff6675";
-        message.textContent="❌ Usuário ou senha incorretos.";
-        return;
-    }
-
-    setCurrentUser(user.username);
-
-    message.style.color="#48ff9b";
-    message.textContent="✅ Login realizado!";
-
-    setTimeout(()=>{
-        loginForm.reset();
-        authModal.classList.remove("active");
-        updateAccountButton();
-    },500);
-};
-
-
-/* ============================
-   ABRIR ADM
-============================ */
-
-function openAdmin(){
-
-    const user=getCurrentUser();
-
-    if(!user || user.toLowerCase()!==OWNER_USERNAME){
-        alert("❌ ACESSO NEGADO.");
-        return;
-    }
-
-    adminModal.classList.add("active");
-
-    renderUsers();
-    renderAdminRanking();
-    renderAdminEvents();
-    loadSiteSettings();
 }
 
 
-/* ============================
-   TABS ADM
-============================ */
+/* ==========================================
+   ABRIR CONTA
+========================================== */
 
-document.querySelectorAll(".admin-tab").forEach(button=>{
+accountBtn.addEventListener("click",()=>{
 
-    button.onclick=function(){
+ const user = currentUser();
 
-        document.querySelectorAll(".admin-tab")
-        .forEach(b=>b.classList.remove("active"));
+ if(user){
 
-        document.querySelectorAll(".admin-page")
-        .forEach(p=>p.classList.remove("active"));
+  document.getElementById("welcomeUser")
+   .textContent =
+   "OLÁ, " + user.toUpperCase() + "!";
 
-        button.classList.add("active");
+  userModal.classList.add("active");
 
-        document.getElementById(
-            "page-"+button.dataset.page
-        ).classList.add("active");
-    };
+ }else{
+
+  authModal.classList.add("active");
+
+ }
 
 });
 
 
-/* ============================
-   USUÁRIOS
-============================ */
+/* ==========================================
+   FECHAR MODAIS
+========================================== */
+
+document.getElementById("closeAuth")
+ .onclick = () =>
+ authModal.classList.remove("active");
+
+document.getElementById("closeUser")
+ .onclick = () =>
+ userModal.classList.remove("active");
+
+document.getElementById("closeAdminLogin")
+ .onclick = () =>
+ adminLoginModal.classList.remove("active");
+
+document.getElementById("closeAdmin")
+ .onclick = () =>
+ adminModal.classList.remove("active");
+
+
+/* ==========================================
+   TABS
+========================================== */
+
+const loginTab =
+ document.getElementById("loginTab");
+
+const registerTab =
+ document.getElementById("registerTab");
+
+const loginForm =
+ document.getElementById("loginForm");
+
+const registerForm =
+ document.getElementById("registerForm");
+
+
+loginTab.onclick = ()=>{
+
+ loginTab.classList.add("active");
+ registerTab.classList.remove("active");
+
+ loginForm.classList.add("active");
+ registerForm.classList.remove("active");
+
+};
+
+
+registerTab.onclick = ()=>{
+
+ registerTab.classList.add("active");
+ loginTab.classList.remove("active");
+
+ registerForm.classList.add("active");
+ loginForm.classList.remove("active");
+
+};
+
+
+/* ==========================================
+   CADASTRO
+========================================== */
+
+registerForm.addEventListener("submit",(e)=>{
+
+ e.preventDefault();
+
+ const username =
+  document.getElementById("registerUser")
+  .value.trim();
+
+ const password =
+  document.getElementById("registerPass")
+  .value;
+
+ const confirm =
+  document.getElementById("registerPass2")
+  .value;
+
+ const message =
+  document.getElementById("registerMessage");
+
+
+ message.style.color = "#ff6877";
+
+
+ if(username.length < 3){
+
+  message.textContent =
+   "❌ O usuário precisa ter pelo menos 3 caracteres.";
+
+  return;
+
+ }
+
+
+ if(password.length < 4){
+
+  message.textContent =
+   "❌ A senha precisa ter pelo menos 4 caracteres.";
+
+  return;
+
+ }
+
+
+ if(password !== confirm){
+
+  message.textContent =
+   "❌ As senhas não são iguais.";
+
+  return;
+
+ }
+
+
+ const users = getUsers();
+
+ const exists = users.some(
+  u =>
+   u.username.toLowerCase() ===
+   username.toLowerCase()
+ );
+
+
+ if(exists){
+
+  message.textContent =
+   "❌ Esse usuário já existe.";
+
+  return;
+
+ }
+
+
+ users.push({
+
+  username:username,
+  password:password,
+  createdAt:new Date().toISOString()
+
+ });
+
+
+ saveUsers(users);
+
+ loginUser(username);
+
+ message.style.color = "#48ff9b";
+
+ message.textContent =
+  "✅ Conta criada com sucesso!";
+
+
+ setTimeout(()=>{
+
+  registerForm.reset();
+
+  authModal.classList.remove("active");
+
+  updateAccountButton();
+
+ },700);
+
+});
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+loginForm.addEventListener("submit",(e)=>{
+
+ e.preventDefault();
+
+ const username =
+  document.getElementById("loginUser")
+  .value.trim();
+
+ const password =
+  document.getElementById("loginPass")
+  .value;
+
+ const message =
+  document.getElementById("loginMessage");
+
+ const users = getUsers();
+
+ const user = users.find(
+  u =>
+   u.username.toLowerCase() ===
+   username.toLowerCase() &&
+   u.password === password
+ );
+
+
+ if(!user){
+
+  message.style.color = "#ff6877";
+
+  message.textContent =
+   "❌ Usuário ou senha incorretos.";
+
+  return;
+
+ }
+
+
+ loginUser(user.username);
+
+ message.style.color = "#48ff9b";
+
+ message.textContent =
+  "✅ Login realizado!";
+
+
+ setTimeout(()=>{
+
+  loginForm.reset();
+
+  authModal.classList.remove("active");
+
+  updateAccountButton();
+
+ },500);
+
+});
+
+
+/* ==========================================
+   LOGOUT USUÁRIO
+========================================== */
+
+document.getElementById("logoutBtn")
+ .onclick = ()=>{
+
+  logoutUser();
+
+  userModal.classList.remove("active");
+
+ };
+
+
+/* ==========================================
+   ADM
+========================================== */
+
+/*
+   Para abrir o ADM:
+   clique no logo BLOXMAXY 5 vezes rapidamente.
+*/
+
+let adminClicks = 0;
+let adminTimer;
+
+document.querySelector(".logo")
+ .addEventListener("click",()=>{
+
+  adminClicks++;
+
+  clearTimeout(adminTimer);
+
+  adminTimer = setTimeout(()=>{
+   adminClicks = 0;
+  },1500);
+
+  if(adminClicks >= 5){
+
+   adminClicks = 0;
+
+   document.getElementById("adminPassword")
+    .value = "";
+
+   document.getElementById("adminMessage")
+    .textContent = "";
+
+   adminLoginModal.classList.add("active");
+
+  }
+
+ });
+
+
+/* ==========================================
+   LOGIN ADM
+========================================== */
+
+document.getElementById("adminLoginBtn")
+ .onclick = ()=>{
+
+  const password =
+   document.getElementById("adminPassword")
+   .value;
+
+  const message =
+   document.getElementById("adminMessage");
+
+
+  if(password !== ADMIN_PASSWORD){
+
+   message.style.color = "#ff6877";
+
+   message.textContent =
+    "❌ Senha de administrador incorreta.";
+
+   return;
+
+  }
+
+
+  message.style.color = "#48ff9b";
+
+  message.textContent =
+   "✅ Acesso autorizado!";
+
+
+  setTimeout(()=>{
+
+   adminLoginModal.classList.remove("active");
+
+   adminModal.classList.add("active");
+
+   renderUsers();
+
+  },500);
+
+ };
+
+
+/* ==========================================
+   MOSTRAR USUÁRIOS
+========================================== */
 
 function renderUsers(){
 
-    const users=getUsers();
-    const search=document.getElementById("searchUsers").value.toLowerCase();
-    const table=document.getElementById("userTable");
+ const users = getUsers();
 
-    document.getElementById("totalUsers").textContent=users.length;
-    document.getElementById("loggedUser").textContent=getCurrentUser()||"---";
+ const search =
+  document.getElementById("searchUsers")
+  .value
+  .trim()
+  .toLowerCase();
 
-    const filtered=users.filter(
-        u=>u.username.toLowerCase().includes(search)
-    );
+ const table =
+  document.getElementById("userTable");
 
-    table.innerHTML="";
+ const filtered =
+  users.filter(
+   user =>
+    user.username
+     .toLowerCase()
+     .includes(search)
+  );
 
-    if(filtered.length===0){
-        table.innerHTML='<div class="no-users">Nenhum usuário cadastrado.</div>';
-        return;
-    }
 
-    filtered.forEach(user=>{
+ document.getElementById("totalUsers")
+  .textContent = users.length;
 
-        const row=document.createElement("div");
-        row.className="user-line";
 
-        const avatar=document.createElement("div");
-        avatar.className="avatar";
-        avatar.textContent="👤";
+ document.getElementById("onlineUser")
+  .textContent = currentUser() ? "1" : "0";
 
-        const info=document.createElement("div");
-        info.className="user-info-line";
 
-        const name=document.createElement("strong");
-        name.textContent=user.username;
+ if(filtered.length === 0){
 
-        if(user.username.toLowerCase()===OWNER_USERNAME){
+  table.innerHTML =
+   '<div class="no-users">Nenhum usuário encontrado.</div>';
 
-            const badge=document.createElement("span");
-            badge.className="admin-badge";
-            badge.textContent="DONO";
-            name.appendChild(badge);
-        }
+  return;
 
-        const date=document.createElement("small");
-        date.textContent=user.createdAt
-            ?"Criada em "+new Date(user.createdAt).toLocaleDateString("pt-BR")
-            :"Membro BLOXMAXY";
+ }
 
-        info.appendChild(name);
-        info.appendChild(date);
 
-        row.appendChild(avatar);
-        row.appendChild(info);
+ table.innerHTML = "";
 
-        if(user.username.toLowerCase()!==OWNER_USERNAME){
 
-            const del=document.createElement("button");
-            del.className="small-btn red";
-            del.textContent="🗑️ EXCLUIR";
+ filtered.forEach((user,index)=>{
 
-            del.onclick=()=>deleteUser(user.username);
+  const row =
+   document.createElement("div");
 
-            row.appendChild(del);
-        }
+  row.className = "user-line";
 
-        table.appendChild(row);
-    });
+
+  const icon =
+   document.createElement("div");
+
+  icon.className = "avatar";
+
+  icon.textContent = "👤";
+
+
+  const info =
+   document.createElement("div");
+
+  info.className = "user-line-name";
+
+
+  const name =
+   document.createElement("strong");
+
+  name.textContent =
+   user.username;
+
+
+  const date =
+   document.createElement("small");
+
+
+  if(user.createdAt){
+
+   const d =
+    new Date(user.createdAt);
+
+   date.textContent =
+    "Conta criada em " +
+    d.toLocaleDateString("pt-BR");
+
+  }else{
+
+   date.textContent =
+    "Membro BLOXMAXY";
+
+  }
+
+
+  info.appendChild(name);
+  info.appendChild(date);
+
+
+  const deleteButton =
+   document.createElement("button");
+
+  deleteButton.className =
+   "delete-btn";
+
+  deleteButton.textContent =
+   "🗑️ EXCLUIR";
+
+
+  deleteButton.onclick = ()=>{
+
+   deleteUser(user.username);
+
+  };
+
+
+  row.appendChild(icon);
+  row.appendChild(info);
+  row.appendChild(deleteButton);
+
+  table.appendChild(row);
+
+ });
+
 }
+
+
+/* ==========================================
+   EXCLUIR USUÁRIO
+========================================== */
 
 function deleteUser(username){
 
-    if(!confirm("Excluir "+username+"?")) return;
+ if(username === currentUser()){
 
-    saveUsers(
-        getUsers().filter(
-            u=>u.username!==username
-        )
-    );
+  alert(
+   "Você não pode excluir o usuário que está logado."
+  );
 
-    renderUsers();
+  return;
+
+ }
+
+
+ const confirmDelete =
+  confirm(
+   "Tem certeza que deseja excluir a conta de " +
+   username +
+   "?"
+  );
+
+
+ if(!confirmDelete) return;
+
+
+ const users =
+  getUsers().filter(
+   u => u.username !== username
+  );
+
+
+ saveUsers(users);
+
+ renderUsers();
+
 }
+
+
+/* ==========================================
+   PESQUISA ADM
+========================================== */
 
 document.getElementById("searchUsers")
-.addEventListener("input",renderUsers);
+ .addEventListener("input",renderUsers);
 
 
-/* ============================
-   RANKING
-============================ */
+/* ==========================================
+   SAIR DO ADM
+========================================== */
 
-function renderRanking(){
+document.getElementById("adminLogoutBtn")
+ .onclick = ()=>{
 
-    const list=document.getElementById("rankingList");
-    const data=getRanking();
+  adminModal.classList.remove("active");
 
-    data.sort((a,b)=>b.xp-a.xp);
+ };
 
-    list.innerHTML="";
 
-    data.forEach((player,index)=>{
+/* ==========================================
+   ESC FECHA TUDO
+========================================== */
 
-        list.innerHTML+=`
-        <div class="rank-row">
-            <div class="place">${String(index+1).padStart(2,"0")}</div>
-            <div class="avatar">${index===0?"👑":"⚡"}</div>
-            <div class="rank-name">
-                <strong>${escapeHTML(player.name)}</strong>
-                <small>MEMBER</small>
-            </div>
-            <div class="xp">${player.xp} XP</div>
-        </div>`;
-    });
-}
+document.addEventListener("keydown",(e)=>{
 
-function renderAdminRanking(){
+ if(e.key === "Escape"){
 
-    const list=document.getElementById("adminRankingList");
-    const data=getRanking();
+  authModal.classList.remove("active");
+  userModal.classList.remove("active");
+  adminLoginModal.classList.remove("active");
+  adminModal.classList.remove("active");
 
-    list.innerHTML="";
+ }
 
-    data.sort((a,b)=>b.xp-a.xp);
-
-    data.forEach((player,index)=>{
-
-        const item=document.createElement("div");
-        item.className="admin-list-item";
-
-        item.innerHTML=`
-        <b>#${index+1}</b>
-        <span>${escapeHTML(player.name)} — ${player.xp} XP</span>
-        <button class="small-btn red">🗑️</button>`;
-
-        item.querySelector("button").onclick=()=>{
-
-            if(!confirm("Excluir este player do ranking?")) return;
-
-            const newData=getRanking().filter(
-                p=>p.name!==player.name
-            );
-
-            saveRanking(newData);
-            renderAdminRanking();
-            renderRanking();
-        };
-
-        list.appendChild(item);
-    });
-}
-
-document.getElementById("addRank").onclick=function(){
-
-    const name=document.getElementById("rankName").value.trim();
-    const xp=Number(document.getElementById("rankXp").value);
-
-    if(!name || !Number.isFinite(xp)){
-        alert("Preencha nome e XP.");
-        return;
-    }
-
-    const data=getRanking();
-
-    data.push({name,xp});
-
-    saveRanking(data);
-
-    document.getElementById("rankName").value="";
-    document.getElementById("rankXp").value="";
-
-    renderAdminRanking();
-    renderRanking();
-};
-
-
-/* ============================
-   EVENTOS
-============================ */
-
-function renderEvents(){
-
-    const list=document.getElementById("eventsList");
-    const events=getEvents();
-
-    list.innerHTML="";
-
-    events.forEach(event=>{
-
-        list.innerHTML+=`
-        <div class="card">
-            <div class="card-icon">${escapeHTML(event.icon)}</div>
-            <h3>${escapeHTML(event.title)}</h3>
-            <p>${escapeHTML(event.description)}</p>
-        </div>`;
-    });
-}
-
-function renderAdminEvents(){
-
-    const list=document.getElementById("adminEventsList");
-    const events=getEvents();
-
-    document.getElementById("totalEvents").textContent=events.length;
-
-    list.innerHTML="";
-
-    events.forEach((event,index)=>{
-
-        const item=document.createElement("div");
-        item.className="admin-list-item";
-
-        item.innerHTML=`
-        <span>${escapeHTML(event.icon)} ${escapeHTML(event.title)}</span>
-        <button class="small-btn red">🗑️ EXCLUIR</button>`;
-
-        item.querySelector("button").onclick=()=>{
-
-            const data=getEvents();
-            data.splice(index,1);
-
-            saveEvents(data);
-
-            renderAdminEvents();
-            renderEvents();
-        };
-
-        list.appendChild(item);
-    });
-}
-
-document.getElementById("addEvent").onclick=function(){
-
-    const title=document.getElementById("eventTitle").value.trim();
-    const icon=document.getElementById("eventIcon").value.trim()||"🏆";
-    const description=document.getElementById("eventDescription").value.trim();
-
-    if(!title || !description){
-        alert("Preencha o nome e a descrição.");
-        return;
-    }
-
-    const data=getEvents();
-
-    data.push({
-        title,
-        icon,
-        description
-    });
-
-    saveEvents(data);
-
-    document.getElementById("eventTitle").value="";
-    document.getElementById("eventDescription").value="";
-
-    renderAdminEvents();
-    renderEvents();
-};
-
-
-/* ============================
-   SITE
-============================ */
-
-function loadSiteSettings(){
-
-    const settings=JSON.parse(
-        localStorage.getItem("bloxmaxySiteSettings")||"{}"
-    );
-
-    document.getElementById("siteTitle").value=
-    settings.title||"WE ARE BLOXMAXY";
-
-    document.getElementById("siteDescription").value=
-    settings.description||"Uma comunidade criada para competir, evoluir e se divertir.";
-
-    document.getElementById("siteFooter").value=
-    settings.footer||"TEAM • COMMUNITY • COMPETITION";
-}
-
-document.getElementById("saveSite").onclick=function(){
-
-    const data={
-        title:document.getElementById("siteTitle").value,
-        description:document.getElementById("siteDescription").value,
-        footer:document.getElementById("siteFooter").value
-    };
-
-    localStorage.setItem(
-        "bloxmaxySiteSettings",
-        JSON.stringify(data)
-    );
-
-    document.querySelector(".hero h1").innerHTML=
-    escapeHTML(data.title);
-
-    document.querySelector(".hero p").textContent=
-    data.description;
-
-    document.querySelector("footer div:last-child").textContent=
-    data.footer;
-
-    const msg=document.getElementById("siteMessage");
-
-    msg.style.color="#48ff9b";
-    msg.textContent="✅ Alterações salvas!";
-};
-
-
-/* ============================
-   APAGAR DADOS
-============================ */
-
-document.getElementById("clearAll").onclick=function(){
-
-    if(!confirm(
-        "ATENÇÃO!\n\nIsso apagará usuários, ranking, eventos e configurações deste navegador.\n\nContinuar?"
-    )) return;
-
-    localStorage.removeItem("bloxmaxyUsers");
-    localStorage.removeItem("bloxmaxyRanking");
-    localStorage.removeItem("bloxmaxyEvents");
-    localStorage.removeItem("bloxmaxySiteSettings");
-
-    alert("✅ Dados apagados.");
-
-    renderUsers();
-    renderAdminRanking();
-    renderAdminEvents();
-    renderRanking();
-    renderEvents();
-    loadSiteSettings();
-};
-
-
-/* ============================
-   LOGOUT
-============================ */
-
-document.getElementById("logoutBtn").onclick=function(){
-
-    logout();
-    userModal.classList.remove("active");
-};
-
-document.getElementById("adminLogoutBtn").onclick=function(){
-
-    logout();
-    adminModal.classList.remove("active");
-};
-
-
-/* ============================
-   FECHAR
-============================ */
-
-document.getElementById("closeAuth").onclick=()=>{
-    authModal.classList.remove("active");
-};
-
-document.getElementById("closeUser").onclick=()=>{
-    userModal.classList.remove("active");
-};
-
-document.getElementById("closeAdmin").onclick=()=>{
-    adminModal.classList.remove("active");
-};
-
-
-/* ============================
-   MOBILE
-============================ */
-
-document.getElementById("menuBtn").onclick=function(){
-
-    const menu=document.getElementById("mobileNav");
-
-    if(menu.classList.contains("active")){
-        menu.classList.remove("active");
-    }else{
-        menu.classList.add("active");
-    }
-};
-
-document.querySelectorAll("#mobileNav a").forEach(link=>{
-    link.onclick=()=>{
-        document.getElementById("mobileNav")
-        .classList.remove("active");
-    };
 });
 
 
-/* ============================
-   SEGURANÇA BÁSICA
-============================ */
+/* ==========================================
+   INICIALIZAÇÃO
+========================================== */
 
-function escapeHTML(value){
-
-    return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* ============================
-   ESC
-============================ */
-
-document.addEventListener("keydown",e=>{
-
-    if(e.key==="Escape"){
-
-        authModal.classList.remove("active");
-        userModal.classList.remove("active");
-        adminModal.classList.remove("active");
-        document.getElementById("mobileNav")
-        .classList.remove("active");
-    }
-});
-
-
-/* ============================
-   INICIAR
-============================ */
-
-renderRanking();
-renderEvents();
 updateAccountButton();
 
 </script>
 
 </body>
 </html>
-```
