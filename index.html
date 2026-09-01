@@ -4,413 +4,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>BLOXMAXY</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap');
-
-:root{
-    --bg:#050505;
-    --blue:#00b7ff;
-    --blue2:#006eff;
-    --text:#fff;
-    --muted:#858b96;
-    --line:rgba(255,255,255,.09);
-}
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:Inter,Arial,sans-serif;
-    overflow-x:hidden;
+    background:#050505;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
 }
-
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-5;
-    background:
-        linear-gradient(115deg,transparent 45%,rgba(0,183,255,.035) 45.2%,transparent 45.5%),
-        linear-gradient(25deg,transparent 55%,rgba(0,110,255,.025) 55.2%,transparent 55.5%);
-    pointer-events:none;
-}
-
-.glow{
-    position:fixed;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    background:#006eff;
-    filter:blur(180px);
-    opacity:.08;
-    z-index:-4;
-    top:-180px;
-    right:-150px;
-}
-
-/* HEADER */
 
 header{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    height:76px;
+    height:70px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 6%;
+    background:rgba(5,5,5,.92);
+    border-bottom:1px solid #1b1b1b;
     z-index:100;
-    background:rgba(5,5,5,.75);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--line);
 }
 
 .logo{
-    font-family:Orbitron;
     font-size:22px;
     font-weight:900;
     letter-spacing:3px;
+    cursor:pointer;
 }
 
-.logo b{
-    color:var(--blue);
-    text-shadow:0 0 20px rgba(0,183,255,.45);
+.logo span{
+    color:#00b7ff;
 }
 
 nav{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:8px;
+}
+
+nav a,
+button{
+    font-family:inherit;
 }
 
 nav a{
-    color:#969ba3;
+    color:#aaa;
     text-decoration:none;
-    text-transform:uppercase;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1px;
-    transition:.25s;
     padding:10px;
+    font-size:11px;
+    font-weight:bold;
 }
 
 nav a:hover{
-    color:#fff;
+    color:#00b7ff;
 }
 
-.discord-nav{
-    padding:11px 17px!important;
+.discord{
+    background:#5865f2!important;
     color:#fff!important;
-    background:#5865F2;
     border-radius:6px;
 }
 
 .account-btn{
-    border:1px solid #1b3442;
-    background:#081118;
+    background:#071017;
     color:#00b7ff;
-    cursor:pointer;
-    padding:10px 14px;
+    border:1px solid #174b62;
     border-radius:6px;
+    padding:10px 14px;
+    cursor:pointer;
     font-size:10px;
-    font-weight:900;
+    font-weight:bold;
 }
 
-/* HERO */
+.menu-btn{
+    display:none;
+    background:#101820;
+    border:1px solid #23404f;
+    color:white;
+    padding:9px 12px;
+    border-radius:5px;
+    cursor:pointer;
+}
 
 .hero{
     min-height:100vh;
-    padding:130px 6% 100px;
-    position:relative;
+    padding:150px 7% 100px;
     display:flex;
     align-items:center;
-    overflow:hidden;
-}
-
-.hero:after{
-    content:"BLOX";
-    position:absolute;
-    right:-80px;
-    bottom:-90px;
-    font-family:Orbitron;
-    font-size:280px;
-    font-weight:900;
-    color:rgba(255,255,255,.018);
-    pointer-events:none;
 }
 
 .hero-content{
     max-width:850px;
-    position:relative;
-    z-index:2;
 }
 
 .mini{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#7bdcff;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
-
-.mini i{
-    width:30px;
-    height:1px;
-    background:var(--blue);
+    color:#00b7ff;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:3px;
 }
 
 .hero h1{
-    margin-top:20px;
-    font-family:Orbitron;
-    font-size:clamp(65px,11vw,150px);
-    line-height:.83;
-    letter-spacing:-8px;
+    margin-top:18px;
+    font-size:clamp(55px,9vw,125px);
+    line-height:.9;
+    letter-spacing:-6px;
 }
 
 .hero h1 span{
-    color:var(--blue);
-    text-shadow:0 0 45px rgba(0,183,255,.45);
+    color:#00b7ff;
 }
 
-.hero-description{
-    margin-top:30px;
-    max-width:570px;
-    color:#8b929c;
-    font-size:14px;
+.hero p{
+    max-width:600px;
+    margin-top:28px;
+    color:#777;
     line-height:1.8;
+    font-size:13px;
 }
 
-.hero-buttons{
-    margin-top:30px;
+.buttons{
     display:flex;
-    gap:12px;
+    gap:10px;
+    margin-top:28px;
     flex-wrap:wrap;
 }
 
 .btn{
     display:inline-flex;
-    align-items:center;
     justify-content:center;
-    min-width:155px;
+    align-items:center;
     padding:14px 20px;
+    border-radius:5px;
+    border:0;
+    cursor:pointer;
     text-decoration:none;
     font-size:10px;
-    font-weight:900;
-    letter-spacing:1px;
-    transition:.25s;
-    border-radius:5px;
-    cursor:pointer;
-    border:0;
+    font-weight:bold;
 }
 
-.btn-primary{
-    background:var(--blue);
+.primary{
+    background:#00b7ff;
     color:#001018;
 }
 
-.btn-primary:hover{
-    background:#fff;
-    transform:translateY(-3px);
-}
-
-.btn-discord{
-    background:#5865F2;
-    color:#fff;
-}
-
-.btn-discord:hover{
-    background:#6975ff;
-    transform:translateY(-3px);
-}
-
-.btn-outline{
-    color:#fff;
-    border:1px solid #34383d;
+.outline{
     background:transparent;
-}
-
-.btn-outline:hover{
-    border-color:var(--blue);
-    color:var(--blue);
-}
-
-.stats{
-    position:absolute;
-    bottom:45px;
-    left:6%;
-    display:flex;
-    gap:45px;
-}
-
-.stat strong{
-    display:block;
-    font-family:Orbitron;
-    font-size:19px;
-}
-
-.stat span{
-    color:#626872;
-    font-size:9px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-}
-
-.divider{
-    height:1px;
-    background:linear-gradient(90deg,transparent,#1e3946,transparent);
+    color:#fff;
+    border:1px solid #34434c;
 }
 
 .section{
-    padding:110px 6%;
-    max-width:1450px;
+    max-width:1400px;
     margin:auto;
+    padding:100px 7%;
 }
 
-.section-top{
-    display:flex;
-    align-items:end;
-    justify-content:space-between;
-    margin-bottom:45px;
-}
-
-.section-label{
-    color:var(--blue);
-    font-family:Orbitron;
+.label{
+    color:#00b7ff;
     font-size:10px;
+    font-weight:bold;
     letter-spacing:2px;
-    font-weight:800;
 }
 
 .section h2{
     margin-top:10px;
-    font-family:Orbitron;
-    font-size:38px;
+    font-size:35px;
 }
 
-.section-top p{
-    color:#656b74;
-    max-width:350px;
-    font-size:11px;
-    line-height:1.7;
-}
-
-/* EQUIPE */
-
-.team{
+.grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:12px;
+    margin-top:35px;
 }
 
-.member{
-    min-height:300px;
-    position:relative;
-    overflow:hidden;
+.card{
+    min-height:210px;
+    background:#0a0d11;
+    border:1px solid #171d22;
     padding:25px;
-    background:#0a0b0d;
-    border:1px solid var(--line);
-    transition:.3s;
+    transition:.2s;
 }
 
-.member:hover{
-    border-color:rgba(0,183,255,.5);
-    transform:translateY(-5px);
+.card:hover{
+    transform:translateY(-4px);
+    border-color:#00b7ff;
 }
 
-.member-number{
-    color:#353940;
-    font-family:Orbitron;
+.card-icon{
+    font-size:42px;
+    margin:25px 0;
+}
+
+.card h3{
+    font-size:15px;
+}
+
+.card p{
+    color:#69747e;
     font-size:11px;
-}
-
-.member-icon{
-    position:absolute;
-    top:65px;
-    left:25px;
-    font-size:65px;
-    filter:grayscale(1);
-}
-
-.member-info{
-    position:absolute;
-    bottom:24px;
-    left:25px;
-}
-
-.member-info small{
-    color:var(--blue);
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:1px;
-}
-
-.member-info h3{
-    margin-top:5px;
-    font-family:Orbitron;
-    font-size:19px;
-}
-
-/* RANKING */
-
-.ranking-wrap{
-    display:grid;
-    grid-template-columns:1fr 350px;
-    gap:14px;
-}
-
-.rank-list{
-    border:1px solid var(--line);
+    line-height:1.7;
+    margin-top:8px;
 }
 
 .rank{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    min-height:78px;
-    padding:0 24px;
-    border-bottom:1px solid var(--line);
+    margin-top:35px;
+    border:1px solid #171d22;
+    background:#090c10;
 }
 
-.rank:last-child{
+.rank-row{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px;
+    border-bottom:1px solid #171d22;
+}
+
+.rank-row:last-child{
     border-bottom:0;
 }
 
-.rank:hover{
-    background:#0a1015;
+.place{
+    width:30px;
+    color:#68717a;
+    font-weight:bold;
 }
 
-.rank-place{
-    width:35px;
-    color:#444a52;
-    font-family:Orbitron;
-    font-size:12px;
-}
-
-.rank-avatar{
+.avatar{
     width:38px;
     height:38px;
+    border-radius:50%;
+    background:#101c25;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:50%;
-    background:#101923;
-    border:1px solid #18384a;
 }
 
 .rank-name{
@@ -418,346 +256,311 @@ nav a:hover{
 }
 
 .rank-name strong{
+    display:block;
     font-size:12px;
 }
 
 .rank-name small{
-    display:block;
-    color:#5e6873;
-    margin-top:4px;
+    color:#68737d;
     font-size:9px;
 }
 
-.rank-xp{
-    color:var(--blue);
-    font-family:Orbitron;
-    font-size:11px;
-}
-
-.feature{
-    min-height:100%;
-    padding:30px;
-    background:
-        radial-gradient(circle at 100% 0,rgba(0,183,255,.16),transparent 45%),
-        #090d12;
-    border:1px solid var(--line);
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-}
-
-.feature small{
-    color:var(--blue);
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:2px;
-}
-
-.feature h3{
-    margin-top:15px;
-    font-family:Orbitron;
-    font-size:27px;
-}
-
-.feature p{
-    color:#69727d;
-    font-size:11px;
-    line-height:1.8;
-    margin-top:15px;
-}
-
-/* EVENTOS */
-
-.events{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.event{
-    min-height:230px;
-    padding:25px;
-    border:1px solid var(--line);
-    background:#08090b;
-    position:relative;
-    overflow:hidden;
-    transition:.3s;
-}
-
-.event:hover{
-    border-color:rgba(0,183,255,.4);
-    transform:translateY(-4px);
-}
-
-.event-number{
-    color:#41464e;
-    font-family:Orbitron;
+.xp{
+    color:#00b7ff;
     font-size:10px;
+    font-weight:bold;
 }
 
-.event-icon{
-    font-size:35px;
-    margin-top:30px;
-}
-
-.event h3{
-    margin-top:18px;
-    font-size:15px;
-}
-
-.event p{
-    margin-top:7px;
-    color:#69727d;
-    font-size:11px;
-    line-height:1.7;
-}
-
-/* REGRAS */
-
-.rules{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-}
-
-.rule{
-    padding:25px;
-    border-top:2px solid #1c2830;
-    background:#08090b;
-}
-
-.rule:hover{
-    border-color:var(--blue);
-}
-
-.rule span{
-    color:var(--blue);
-    font-family:Orbitron;
-    font-size:11px;
-}
-
-.rule h3{
-    margin-top:20px;
-    font-size:13px;
-}
-
-.rule p{
-    margin-top:8px;
-    color:#68717b;
-    font-size:11px;
-    line-height:1.7;
-}
-
-/* DISCORD */
-
-.discord{
-    padding:70px 30px;
+.discord-box{
     text-align:center;
-    background:
-        radial-gradient(circle at 50% 0,rgba(88,101,242,.17),transparent 45%),
-        #080b0f;
-    border:1px solid rgba(88,101,242,.25);
+    padding:65px 20px;
+    background:#080b10;
+    border:1px solid #252c45;
 }
 
-.discord h2{
-    margin-top:12px;
-    font-family:Orbitron;
-    font-size:35px;
-}
-
-.discord p{
-    max-width:500px;
+.discord-box p{
+    max-width:550px;
     margin:15px auto 25px;
-    color:#737c87;
-    font-size:12px;
+    color:#777;
     line-height:1.8;
+    font-size:12px;
+}
+
+footer{
+    border-top:1px solid #171717;
+    padding:35px 7%;
+    display:flex;
+    justify-content:space-between;
+    color:#555;
+    font-size:10px;
 }
 
 /* MODAIS */
 
 .modal{
+    display:none;
     position:fixed;
     inset:0;
     z-index:1000;
-    display:none;
+    background:rgba(0,0,0,.88);
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:rgba(0,0,0,.82);
-    backdrop-filter:blur(12px);
 }
 
 .modal.active{
     display:flex;
 }
 
-.auth-box{
+.box{
     width:100%;
-    max-width:420px;
-    padding:35px;
+    max-width:430px;
     background:#090d12;
-    border:1px solid #16445c;
-    box-shadow:0 30px 100px rgba(0,0,0,.7);
-}
-
-.auth-box h2{
-    font-family:Orbitron;
-    font-size:23px;
-}
-
-.auth-subtitle{
-    color:#687582;
-    font-size:11px;
-    line-height:1.7;
-    margin:10px 0 25px;
-}
-
-.auth-tabs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    margin-bottom:20px;
-}
-
-.auth-tab{
-    padding:12px;
-    background:#070a0d;
-    border:1px solid #1b2c37;
-    color:#697681;
-    cursor:pointer;
-    font-size:10px;
-    font-weight:900;
-}
-
-.auth-tab.active{
-    color:#001018;
-    background:var(--blue);
-}
-
-.auth-form{
-    display:none;
-}
-
-.auth-form.active{
-    display:block;
-}
-
-.auth-form label{
-    display:block;
-    color:#71808b;
-    font-size:9px;
-    font-weight:800;
-    text-transform:uppercase;
-    margin:12px 0 6px;
-}
-
-.auth-form input{
-    width:100%;
-    padding:14px;
-    color:#fff;
-    background:#03070b;
-    border:1px solid #1a3444;
-    outline:none;
-    border-radius:5px;
-}
-
-.auth-form input:focus{
-    border-color:var(--blue);
-}
-
-.auth-message{
-    min-height:20px;
-    margin-top:12px;
-    font-size:10px;
-}
-
-.close{
-    width:38px;
-    height:38px;
-    border:1px solid #303840;
-    background:#10151b;
-    color:#fff;
-    cursor:pointer;
-    border-radius:5px;
+    border:1px solid #164b63;
+    padding:30px;
 }
 
 .modal-head{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:15px;
 }
 
-.user-panel{
+.modal-head h2{
+    font-size:21px;
+}
+
+.close{
+    width:35px;
+    height:35px;
+    background:#11171c;
+    border:1px solid #29353c;
+    color:#fff;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.subtitle{
+    color:#68737d;
+    font-size:11px;
+    line-height:1.7;
+    margin:10px 0 20px;
+}
+
+.tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.tab{
+    padding:12px;
+    background:#070a0d;
+    border:1px solid #1b303c;
+    color:#68737d;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.tab.active{
+    background:#00b7ff;
+    color:#001018;
+}
+
+.form{
+    display:none;
+}
+
+.form.active{
+    display:block;
+}
+
+label{
+    display:block;
+    color:#71808b;
+    font-size:9px;
+    font-weight:bold;
+    margin:13px 0 6px;
+}
+
+input{
     width:100%;
-    max-width:420px;
-    padding:35px;
-    background:#090d12;
-    border:1px solid #16445c;
+    padding:13px;
+    background:#03070b;
+    border:1px solid #1b3544;
+    color:white;
+    outline:none;
+    border-radius:5px;
+}
+
+input:focus{
+    border-color:#00b7ff;
+}
+
+.message{
+    min-height:20px;
+    margin-top:10px;
+    font-size:10px;
+}
+
+.user-info{
     text-align:center;
 }
 
 .user-icon{
     font-size:55px;
-    margin-bottom:15px;
+    margin:20px 0;
 }
 
-.user-panel h2{
-    font-family:Orbitron;
+.user-info h2{
+    font-size:21px;
+}
+
+.user-info p{
+    color:#68737d;
+    font-size:11px;
+    margin:10px 0 22px;
+}
+
+/* ADM */
+
+.admin-box{
+    width:100%;
+    max-width:950px;
+    max-height:90vh;
+    overflow:auto;
+    background:#080c10;
+    border:1px solid #15516b;
+    padding:30px;
+}
+
+.admin-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.admin-header h2{
+    color:#00b7ff;
+    margin-top:7px;
+}
+
+.admin-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.admin-stat{
+    padding:20px;
+    background:#0c1218;
+    border:1px solid #182127;
+}
+
+.admin-stat strong{
+    display:block;
+    color:#00b7ff;
     font-size:22px;
 }
 
-.user-panel p{
-    color:#6f7a85;
-    font-size:11px;
-    margin:10px 0 25px;
+.admin-stat span{
+    color:#68737d;
+    font-size:9px;
 }
 
-/* FOOTER */
+.search{
+    margin:20px 0;
+}
 
-footer{
-    padding:40px 6%;
+.user-table{
+    border:1px solid #182127;
+}
+
+.user-line{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    border-top:1px solid var(--line);
-    color:#555c65;
-    font-size:9px;
-    letter-spacing:1px;
+    gap:12px;
+    padding:14px;
+    border-bottom:1px solid #182127;
 }
 
-footer strong{
-    color:#fff;
+.user-line:last-child{
+    border-bottom:0;
+}
+
+.user-info-line{
+    flex:1;
+}
+
+.user-info-line strong{
+    display:block;
+    font-size:11px;
+}
+
+.user-info-line small{
+    color:#65717b;
+    font-size:8px;
+}
+
+.delete-btn{
+    background:#291015;
+    color:#ff6675;
+    border:1px solid #632832;
+    padding:8px 10px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.no-users{
+    padding:30px;
+    text-align:center;
+    color:#68737d;
+    font-size:11px;
+}
+
+.admin-badge{
+    display:inline-block;
+    margin-left:6px;
+    padding:3px 6px;
+    border-radius:4px;
+    background:#00b7ff;
+    color:#001018;
+    font-size:7px;
+    font-weight:bold;
 }
 
 /* MOBILE */
 
-@media(max-width:1000px){
+@media(max-width:850px){
 
-    .team{
-        grid-template-columns:1fr 1fr;
+    nav a{
+        display:none;
     }
 
-    .ranking-wrap{
-        grid-template-columns:1fr;
+    .menu-btn{
+        display:block;
     }
 
-    .rules{
+    nav{
+        gap:5px;
+    }
+
+    .grid{
         grid-template-columns:1fr 1fr;
     }
 }
 
-@media(max-width:700px){
+@media(max-width:600px){
 
     header{
         padding:0 15px;
     }
 
-    header nav a{
-        display:none;
-    }
-
     .hero{
-        padding:120px 20px 150px;
+        padding:120px 20px 100px;
     }
 
     .hero h1{
@@ -765,35 +568,16 @@ footer strong{
         letter-spacing:-4px;
     }
 
-    .stats{
-        left:20px;
-        gap:20px;
-    }
-
     .section{
-        padding:75px 20px;
+        padding:70px 20px;
     }
 
-    .section-top{
-        display:block;
-    }
-
-    .section-top p{
-        margin-top:12px;
-    }
-
-    .team,
-    .events,
-    .rules{
+    .grid{
         grid-template-columns:1fr;
     }
 
-    .hero-buttons{
-        flex-direction:column;
-    }
-
-    .btn{
-        width:100%;
+    .admin-stats{
+        grid-template-columns:1fr;
     }
 
     footer{
@@ -801,7 +585,7 @@ footer strong{
         text-align:center;
     }
 
-    footer div{
+    footer div+div{
         margin-top:10px;
     }
 }
@@ -810,392 +594,275 @@ footer strong{
 
 <body>
 
-<div class="glow"></div>
-
 <header>
 
-    <div class="logo">
-        BLOX<b>MAXY</b>
-    </div>
+<div class="logo" id="logo">
+BLOX<span>MAXY</span>
+</div>
 
-    <nav>
+<nav>
 
-        <a href="#equipe">Equipe</a>
-        <a href="#ranking">Ranking</a>
-        <a href="#eventos">Eventos</a>
-        <a href="#regras">Regras</a>
+<a href="#equipe">Equipe</a>
+<a href="#ranking">Ranking</a>
+<a href="#eventos">Eventos</a>
+<a href="#regras">Regras</a>
 
-        <a
-            href="https://discord.gg/pMgwP3KVC"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="discord-nav">
-            💬 DISCORD
-        </a>
+<a
+class="discord"
+href="https://discord.gg/pMgwP3KVC"
+target="_blank">
+💬 DISCORD
+</a>
 
-        <button class="account-btn" id="accountButton">
-            👤 ENTRAR
-        </button>
+<button class="account-btn" id="accountBtn">
+👤 ENTRAR
+</button>
 
-    </nav>
+<button class="menu-btn" id="menuBtn">
+☰
+</button>
+
+</nav>
 
 </header>
 
 
 <section class="hero">
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <div class="mini">
-            <i></i>
-            BLOXMAXY TEAM
-        </div>
+<div class="mini">
+BLOXMAXY TEAM • 2026
+</div>
 
-        <h1>
-            WE ARE<br>
-            <span>BLOXMAXY</span>
-        </h1>
+<h1>
+WE ARE<br>
+<span>BLOXMAXY</span>
+</h1>
 
-        <p class="hero-description">
-            Uma equipe criada para competir, evoluir e construir
-            uma comunidade forte. Aqui cada jogador tem seu espaço.
-        </p>
+<p>
+Uma comunidade criada para competir,
+evoluir e se divertir.
+</p>
 
-        <div class="hero-buttons">
+<div class="buttons">
 
-            <a href="#equipe" class="btn btn-primary">
-                CONHECER EQUIPE
-            </a>
+<a href="#equipe" class="btn primary">
+CONHECER EQUIPE
+</a>
 
-            <a
-                href="https://discord.gg/pMgwP3KVC"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-discord">
-                💬 ENTRAR NO DISCORD
-            </a>
+<a
+href="https://discord.gg/pMgwP3KVC"
+target="_blank"
+class="btn discord">
+💬 ENTRAR NO DISCORD
+</a>
 
-        </div>
+</div>
 
-    </div>
-
-    <div class="stats">
-
-        <div class="stat">
-            <strong>01</strong>
-            <span>Equipe</span>
-        </div>
-
-        <div class="stat">
-            <strong>24/7</strong>
-            <span>Comunidade</span>
-        </div>
-
-        <div class="stat">
-            <strong>2026</strong>
-            <span>Fundação</span>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<div class="divider"></div>
-
-
 <section class="section" id="equipe">
 
-    <div class="section-top">
+<div class="label">
+01 / TEAM
+</div>
 
-        <div>
-            <div class="section-label">01 / TEAM</div>
-            <h2>NOSSA EQUIPE</h2>
-        </div>
+<h2>NOSSA EQUIPE</h2>
 
-        <p>
-            Conheça a estrutura da BLOXMAXY.
-        </p>
+<div class="grid">
 
-    </div>
+<div class="card">
+<div>01</div>
+<div class="card-icon">👑</div>
+<h3>CEO</h3>
+<p>Liderança da BLOXMAXY.</p>
+</div>
 
-    <div class="team">
+<div class="card">
+<div>02</div>
+<div class="card-icon">⚡</div>
+<h3>ADMIN</h3>
+<p>Administração da comunidade.</p>
+</div>
 
-        <div class="member">
-            <div class="member-number">01</div>
-            <div class="member-icon">👑</div>
-            <div class="member-info">
-                <small>LEADERSHIP</small>
-                <h3>CEO</h3>
-            </div>
-        </div>
+<div class="card">
+<div>03</div>
+<div class="card-icon">🛡️</div>
+<h3>MOD</h3>
+<p>Moderação dos membros.</p>
+</div>
 
-        <div class="member">
-            <div class="member-number">02</div>
-            <div class="member-icon">⚡</div>
-            <div class="member-info">
-                <small>MANAGEMENT</small>
-                <h3>ADMIN</h3>
-            </div>
-        </div>
+<div class="card">
+<div>04</div>
+<div class="card-icon">🎮</div>
+<h3>MEMBER</h3>
+<p>Membros da comunidade.</p>
+</div>
 
-        <div class="member">
-            <div class="member-number">03</div>
-            <div class="member-icon">🛡️</div>
-            <div class="member-info">
-                <small>STAFF</small>
-                <h3>MOD</h3>
-            </div>
-        </div>
-
-        <div class="member">
-            <div class="member-number">04</div>
-            <div class="member-icon">🎮</div>
-            <div class="member-info">
-                <small>ROSTER</small>
-                <h3>MEMBER</h3>
-            </div>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <section class="section" id="ranking">
 
-    <div class="section-top">
+<div class="label">
+02 / RANKING
+</div>
 
-        <div>
-            <div class="section-label">02 / RANKING</div>
-            <h2>TOP PLAYERS</h2>
-        </div>
+<h2>TOP PLAYERS</h2>
 
-        <p>
-            Ranking interno dos jogadores.
-        </p>
+<div class="rank">
 
-    </div>
+<div class="rank-row">
+<div class="place">01</div>
+<div class="avatar">👑</div>
+<div class="rank-name">
+<strong>MAXY_MASTER</strong>
+<small>ELITE MEMBER</small>
+</div>
+<div class="xp">9850 XP</div>
+</div>
 
-    <div class="ranking-wrap">
+<div class="rank-row">
+<div class="place">02</div>
+<div class="avatar">⚡</div>
+<div class="rank-name">
+<strong>BLOX_PLAYER</strong>
+<small>VETERAN</small>
+</div>
+<div class="xp">8720 XP</div>
+</div>
 
-        <div class="rank-list">
+<div class="rank-row">
+<div class="place">03</div>
+<div class="avatar">🔥</div>
+<div class="rank-name">
+<strong>SHADOW_X</strong>
+<small>MEMBER</small>
+</div>
+<div class="xp">7430 XP</div>
+</div>
 
-            <div class="rank">
-                <div class="rank-place">01</div>
-                <div class="rank-avatar">👑</div>
-                <div class="rank-name">
-                    <strong>MAXY_MASTER</strong>
-                    <small>ELITE MEMBER</small>
-                </div>
-                <div class="rank-xp">9850 XP</div>
-            </div>
-
-            <div class="rank">
-                <div class="rank-place">02</div>
-                <div class="rank-avatar">⚡</div>
-                <div class="rank-name">
-                    <strong>BLOX_PLAYER</strong>
-                    <small>VETERAN</small>
-                </div>
-                <div class="rank-xp">8720 XP</div>
-            </div>
-
-            <div class="rank">
-                <div class="rank-place">03</div>
-                <div class="rank-avatar">🔥</div>
-                <div class="rank-name">
-                    <strong>SHADOW_X</strong>
-                    <small>MEMBER</small>
-                </div>
-                <div class="rank-xp">7430 XP</div>
-            </div>
-
-            <div class="rank">
-                <div class="rank-place">04</div>
-                <div class="rank-avatar">🐉</div>
-                <div class="rank-name">
-                    <strong>DRAGONMAX</strong>
-                    <small>MEMBER</small>
-                </div>
-                <div class="rank-xp">6910 XP</div>
-            </div>
-
-        </div>
-
-        <div class="feature">
-
-            <div>
-                <small>PLAYER OF THE MONTH</small>
-
-                <h3>
-                    MAXY<br>
-                    MASTER
-                </h3>
-
-                <p>
-                    Jogador em destaque pelo desempenho
-                    e participação nos eventos da equipe.
-                </p>
-            </div>
-
-            <a href="#eventos" class="btn btn-outline">
-                VER EVENTOS
-            </a>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <section class="section" id="eventos">
 
-    <div class="section-top">
+<div class="label">
+03 / EVENTS
+</div>
 
-        <div>
-            <div class="section-label">03 / EVENTS</div>
-            <h2>PRÓXIMOS EVENTOS</h2>
-        </div>
+<h2>EVENTOS</h2>
 
-        <p>
-            Competições e atividades da equipe.
-        </p>
+<div class="grid">
 
-    </div>
+<div class="card">
+<div class="card-icon">🏆</div>
+<h3>CAMPEONATO</h3>
+<p>Torneios internos da BLOXMAXY.</p>
+</div>
 
-    <div class="events">
+<div class="card">
+<div class="card-icon">⚔️</div>
+<h3>DESAFIO PVP</h3>
+<p>Desafios entre membros.</p>
+</div>
 
-        <div class="event">
-            <div class="event-number">EVENT 001</div>
-            <div class="event-icon">🏆</div>
-            <h3>CAMPEONATO BLOXMAXY</h3>
-            <p>
-                Torneio interno para definir
-                os melhores jogadores da equipe.
-            </p>
-        </div>
+<div class="card">
+<div class="card-icon">🎯</div>
+<h3>MISSÃO</h3>
+<p>Missões especiais.</p>
+</div>
 
-        <div class="event">
-            <div class="event-number">EVENT 002</div>
-            <div class="event-icon">⚔️</div>
-            <h3>DESAFIO PVP</h3>
-            <p>
-                Batalhas entre membros em busca
-                de pontos para o ranking.
-            </p>
-        </div>
+<div class="card">
+<div class="card-icon">🔥</div>
+<h3>EVENTO ESPECIAL</h3>
+<p>Eventos da comunidade.</p>
+</div>
 
-        <div class="event">
-            <div class="event-number">EVENT 003</div>
-            <div class="event-icon">🎯</div>
-            <h3>MISSÃO SEMANAL</h3>
-            <p>
-                Complete o desafio da semana
-                e ganhe XP no ranking.
-            </p>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <section class="section" id="regras">
 
-    <div class="section-top">
+<div class="label">
+04 / RULES
+</div>
 
-        <div>
-            <div class="section-label">04 / RULES</div>
-            <h2>REGRAS</h2>
-        </div>
+<h2>REGRAS</h2>
 
-        <p>
-            Regras da comunidade BLOXMAXY.
-        </p>
+<div class="grid">
 
-    </div>
+<div class="card">
+<h3>RESPEITO</h3>
+<p>Respeite todos os membros.</p>
+</div>
 
-    <div class="rules">
+<div class="card">
+<h3>FAIR PLAY</h3>
+<p>Não utilize cheats ou exploits.</p>
+</div>
 
-        <div class="rule">
-            <span>01</span>
-            <h3>RESPEITO</h3>
-            <p>
-                Respeite todos os jogadores e membros da equipe.
-            </p>
-        </div>
+<div class="card">
+<h3>COMUNIDADE</h3>
+<p>Não faça spam ou flood.</p>
+</div>
 
-        <div class="rule">
-            <span>02</span>
-            <h3>FAIR PLAY</h3>
-            <p>
-                Não utilize exploits, cheats ou qualquer tipo de trapaça.
-            </p>
-        </div>
+<div class="card">
+<h3>ROBLOX</h3>
+<p>Respeite as regras da plataforma.</p>
+</div>
 
-        <div class="rule">
-            <span>03</span>
-            <h3>COMUNIDADE</h3>
-            <p>
-                Não faça spam, flood ou divulgações sem autorização.
-            </p>
-        </div>
-
-        <div class="rule">
-            <span>04</span>
-            <h3>PLATAFORMA</h3>
-            <p>
-                Respeite as regras do Roblox e da nossa comunidade.
-            </p>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <section class="section">
 
-    <div class="discord">
+<div class="discord-box">
 
-        <div class="section-label">
-            BLOXMAXY COMMUNITY
-        </div>
+<div class="label">
+BLOXMAXY COMMUNITY
+</div>
 
-        <h2>
-            ENTRE PARA A COMUNIDADE
-        </h2>
+<h2>ENTRE PARA A COMUNIDADE</h2>
 
-        <p>
-            Entre no servidor PSW CHOPATS para acompanhar
-            novidades, conversar com outros jogadores
-            e participar dos eventos da BLOXMAXY.
-        </p>
+<p>
+Entre no nosso Discord para conversar,
+participar dos eventos e acompanhar novidades.
+</p>
 
-        <a
-            href="https://discord.gg/pMgwP3KVC"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-discord">
-            💬 ENTRAR NO DISCORD
-        </a>
+<a
+href="https://discord.gg/pMgwP3KVC"
+target="_blank"
+class="btn discord">
+💬 ENTRAR NO DISCORD
+</a>
 
-    </div>
+</div>
 
 </section>
 
 
 <footer>
 
-    <div>
-        © 2026 <strong>BLOXMAXY</strong>
-    </div>
+<div>
+© 2026 BLOXMAXY
+</div>
 
-    <div>
-        TEAM • COMMUNITY • COMPETITION
-    </div>
+<div>
+TEAM • COMMUNITY • COMPETITION
+</div>
 
 </footer>
 
@@ -1204,203 +871,212 @@ footer strong{
 
 <div class="modal" id="authModal">
 
-    <div class="auth-box">
+<div class="box">
 
-        <div class="modal-head">
+<div class="modal-head">
+<h2>👤 CONTA</h2>
+<button class="close" id="closeAuth">✕</button>
+</div>
 
-            <h2>👤 CONTA</h2>
+<p class="subtitle">
+Entre na sua conta ou crie uma nova conta BLOXMAXY.
+</p>
 
-            <button class="close" id="closeAuth">
-                ✕
-            </button>
+<div class="tabs">
 
-        </div>
+<button class="tab active" id="loginTab">
+ENTRAR
+</button>
 
-        <p class="auth-subtitle">
-            Crie sua conta ou entre na sua conta BLOXMAXY.
-        </p>
-
-
-        <div class="auth-tabs">
-
-            <button
-                class="auth-tab active"
-                id="loginTab">
-                ENTRAR
-            </button>
-
-            <button
-                class="auth-tab"
-                id="registerTab">
-                CRIAR CONTA
-            </button>
-
-        </div>
-
-
-        <!-- LOGIN -->
-
-        <form class="auth-form active" id="loginForm">
-
-            <label>Nome de usuário</label>
-
-            <input
-                type="text"
-                id="loginUser"
-                placeholder="Seu usuário"
-                autocomplete="username"
-                required>
-
-
-            <label>Senha</label>
-
-            <input
-                type="password"
-                id="loginPass"
-                placeholder="Sua senha"
-                autocomplete="current-password"
-                required>
-
-
-            <button class="btn btn-primary" style="width:100%;margin-top:18px;">
-                ENTRAR NA CONTA
-            </button>
-
-            <div class="auth-message" id="loginMessage"></div>
-
-        </form>
-
-
-        <!-- CADASTRO -->
-
-        <form class="auth-form" id="registerForm">
-
-            <label>Nome de usuário</label>
-
-            <input
-                type="text"
-                id="registerUser"
-                placeholder="Escolha um usuário"
-                minlength="3"
-                maxlength="20"
-                required>
-
-
-            <label>Senha</label>
-
-            <input
-                type="password"
-                id="registerPass"
-                placeholder="Escolha uma senha"
-                minlength="4"
-                required>
-
-
-            <label>Confirmar senha</label>
-
-            <input
-                type="password"
-                id="registerPass2"
-                placeholder="Digite a senha novamente"
-                required>
-
-
-            <button class="btn btn-primary" style="width:100%;margin-top:18px;">
-                CRIAR MINHA CONTA
-            </button>
-
-            <div class="auth-message" id="registerMessage"></div>
-
-        </form>
-
-    </div>
+<button class="tab" id="registerTab">
+CRIAR CONTA
+</button>
 
 </div>
 
 
-<!-- CONTA LOGADA -->
+<form class="form active" id="loginForm">
+
+<label>Usuário</label>
+
+<input
+id="loginUser"
+type="text"
+required>
+
+<label>Senha</label>
+
+<input
+id="loginPass"
+type="password"
+required>
+
+<button
+class="btn primary"
+style="width:100%;margin-top:18px">
+ENTRAR
+</button>
+
+<div class="message" id="loginMessage"></div>
+
+</form>
+
+
+<form class="form" id="registerForm">
+
+<label>Usuário</label>
+
+<input
+id="registerUser"
+type="text"
+minlength="3"
+maxlength="20"
+required>
+
+<label>Senha</label>
+
+<input
+id="registerPass"
+type="password"
+minlength="4"
+required>
+
+<label>Confirmar senha</label>
+
+<input
+id="registerPass2"
+type="password"
+required>
+
+<button
+class="btn primary"
+style="width:100%;margin-top:18px">
+CRIAR CONTA
+</button>
+
+<div class="message" id="registerMessage"></div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- USUÁRIO -->
 
 <div class="modal" id="userModal">
 
-    <div class="user-panel">
+<div class="box user-info">
 
-        <div class="modal-head">
+<div class="modal-head">
+<div></div>
+<button class="close" id="closeUser">✕</button>
+</div>
 
-            <div></div>
+<div class="user-icon">👤</div>
 
-            <button class="close" id="closeUser">
-                ✕
-            </button>
+<h2 id="welcomeUser"></h2>
 
-        </div>
+<p>
+Você está conectado à BLOXMAXY.
+</p>
 
-        <div class="user-icon">
-            👤
-        </div>
+<button
+class="btn primary"
+id="logoutBtn"
+style="width:100%">
+🚪 SAIR
+</button>
 
-        <h2 id="welcomeUser">
-            OLÁ!
-        </h2>
+</div>
 
-        <p>
-            Você está conectado à BLOXMAXY.
-        </p>
+</div>
 
-        <button
-            class="btn btn-primary"
-            id="logoutButton"
-            style="width:100%;">
-            🚪 SAIR DA CONTA
-        </button>
 
-    </div>
+<!-- PAINEL ADM -->
+
+<div class="modal" id="adminModal">
+
+<div class="admin-box">
+
+<div class="admin-header">
+
+<div>
+
+<div class="label">
+BLOXMAXY SYSTEM
+</div>
+
+<h2>👑 PAINEL ADM</h2>
+
+</div>
+
+<button class="close" id="closeAdmin">
+✕
+</button>
+
+</div>
+
+
+<div class="admin-stats">
+
+<div class="admin-stat">
+<strong id="totalUsers">0</strong>
+<span>Usuários cadastrados</span>
+</div>
+
+<div class="admin-stat">
+<strong id="loggedUser">---</strong>
+<span>Usuário logado</span>
+</div>
+
+<div class="admin-stat">
+<strong>ACESSO TOTAL</strong>
+<span>admenzo</span>
+</div>
+
+</div>
+
+
+<div class="search">
+
+<input
+id="searchUsers"
+type="text"
+placeholder="🔎 Pesquisar usuário...">
+
+</div>
+
+
+<div class="user-table" id="userTable"></div>
+
+
+<button
+class="btn outline"
+id="adminLogoutBtn"
+style="margin-top:18px">
+🚪 SAIR DO PAINEL
+</button>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* ==========================================
-   SISTEMA DE CONTAS BLOXMAXY
-========================================== */
+/* ==================================================
+   CONFIGURAÇÃO DA CONTA DONA
+================================================== */
 
-const accountButton =
-    document.getElementById("accountButton");
-
-const authModal =
-    document.getElementById("authModal");
-
-const userModal =
-    document.getElementById("userModal");
-
-const closeAuth =
-    document.getElementById("closeAuth");
-
-const closeUser =
-    document.getElementById("closeUser");
-
-const loginTab =
-    document.getElementById("loginTab");
-
-const registerTab =
-    document.getElementById("registerTab");
-
-const loginForm =
-    document.getElementById("loginForm");
-
-const registerForm =
-    document.getElementById("registerForm");
-
-const loginMessage =
-    document.getElementById("loginMessage");
-
-const registerMessage =
-    document.getElementById("registerMessage");
+const OWNER_USERNAME = "admenzo";
+const OWNER_PASSWORD = "souceo";
 
 
-/* ==========================================
+/* ==================================================
    BANCO LOCAL
-========================================== */
+================================================== */
 
 function getUsers(){
 
@@ -1418,7 +1094,6 @@ function getUsers(){
 
 }
 
-
 function saveUsers(users){
 
     localStorage.setItem(
@@ -1429,9 +1104,9 @@ function saveUsers(users){
 }
 
 
-/* ==========================================
-   USUÁRIO ATUAL
-========================================== */
+/* ==================================================
+   USUÁRIO LOGADO
+================================================== */
 
 function getCurrentUser(){
 
@@ -1440,7 +1115,6 @@ function getCurrentUser(){
     );
 
 }
-
 
 function setCurrentUser(username){
 
@@ -1451,7 +1125,6 @@ function setCurrentUser(username){
 
 }
 
-
 function logout(){
 
     localStorage.removeItem(
@@ -1460,14 +1133,29 @@ function logout(){
 
     updateAccountButton();
 
-    userModal.classList.remove("active");
-
 }
 
 
-/* ==========================================
-   ATUALIZAR BOTÃO
-========================================== */
+/* ==================================================
+   ELEMENTOS
+================================================== */
+
+const accountBtn =
+document.getElementById("accountBtn");
+
+const authModal =
+document.getElementById("authModal");
+
+const userModal =
+document.getElementById("userModal");
+
+const adminModal =
+document.getElementById("adminModal");
+
+
+/* ==================================================
+   BOTÃO CONTA
+================================================== */
 
 function updateAccountButton(){
 
@@ -1475,69 +1163,91 @@ function updateAccountButton(){
 
     if(user){
 
-        accountButton.textContent =
-            "👤 " + user.toUpperCase();
+        accountBtn.textContent =
+        "👤 " + user.toUpperCase();
 
     }else{
 
-        accountButton.textContent =
-            "👤 ENTRAR";
+        accountBtn.textContent =
+        "👤 ENTRAR";
 
     }
 
 }
 
-
-/* ==========================================
-   ABRIR CONTA
-========================================== */
-
-accountButton.addEventListener("click",()=>{
+accountBtn.onclick = function(){
 
     const user = getCurrentUser();
 
-    if(user){
-
-        document.getElementById(
-            "welcomeUser"
-        ).textContent =
-            "OLÁ, " + user.toUpperCase() + "!";
-
-        userModal.classList.add("active");
-
-    }else{
+    if(!user){
 
         authModal.classList.add("active");
 
-        loginTab.click();
+        return;
 
     }
 
-});
+    if(user.toLowerCase() === OWNER_USERNAME){
+
+        openAdmin();
+
+        return;
+
+    }
+
+    document.getElementById("welcomeUser")
+    .textContent =
+    "OLÁ, " + user.toUpperCase() + "!";
+
+    userModal.classList.add("active");
+
+};
 
 
-/* ==========================================
+/* ==================================================
    FECHAR
-========================================== */
+================================================== */
 
-closeAuth.addEventListener("click",()=>{
+document.getElementById("closeAuth").onclick =
+function(){
 
     authModal.classList.remove("active");
 
-});
+};
 
-closeUser.addEventListener("click",()=>{
+document.getElementById("closeUser").onclick =
+function(){
 
     userModal.classList.remove("active");
 
-});
+};
+
+document.getElementById("closeAdmin").onclick =
+function(){
+
+    adminModal.classList.remove("active");
+
+};
 
 
-/* ==========================================
+/* ==================================================
    TABS
-========================================== */
+================================================== */
 
-loginTab.addEventListener("click",()=>{
+const loginTab =
+document.getElementById("loginTab");
+
+const registerTab =
+document.getElementById("registerTab");
+
+const loginForm =
+document.getElementById("loginForm");
+
+const registerForm =
+document.getElementById("registerForm");
+
+
+loginTab.onclick = function(){
 
     loginTab.classList.add("active");
     registerTab.classList.remove("active");
@@ -1545,13 +1255,10 @@ loginTab.addEventListener("click",()=>{
     loginForm.classList.add("active");
     registerForm.classList.remove("active");
 
-    loginMessage.textContent="";
-    registerMessage.textContent="";
-
-});
+};
 
 
-registerTab.addEventListener("click",()=>{
+registerTab.onclick = function(){
 
     registerTab.classList.add("active");
     loginTab.classList.remove("active");
@@ -1559,64 +1266,51 @@ registerTab.addEventListener("click",()=>{
     registerForm.classList.add("active");
     loginForm.classList.remove("active");
 
-    loginMessage.textContent="";
-    registerMessage.textContent="";
-
-});
+};
 
 
-/* ==========================================
+/* ==================================================
    CADASTRO
-========================================== */
+================================================== */
 
-registerForm.addEventListener("submit",(e)=>{
+registerForm.onsubmit = function(e){
 
     e.preventDefault();
 
     const username =
-        document.getElementById(
-            "registerUser"
-        ).value.trim();
+    document.getElementById("registerUser")
+    .value.trim();
 
-    const pass =
-        document.getElementById(
-            "registerPass"
-        ).value;
+    const password =
+    document.getElementById("registerPass")
+    .value;
 
-    const pass2 =
-        document.getElementById(
-            "registerPass2"
-        ).value;
+    const password2 =
+    document.getElementById("registerPass2")
+    .value;
 
-
-    registerMessage.style.color =
-        "#ff7373";
+    const message =
+    document.getElementById("registerMessage");
 
 
-    if(username.length < 3){
+    if(username.toLowerCase() === OWNER_USERNAME){
 
-        registerMessage.textContent =
-            "❌ O usuário precisa ter pelo menos 3 caracteres.";
+        message.style.color = "#ff6675";
+
+        message.textContent =
+        "❌ Esse nome de usuário é reservado.";
 
         return;
 
     }
 
 
-    if(pass.length < 4){
+    if(password !== password2){
 
-        registerMessage.textContent =
-            "❌ A senha precisa ter pelo menos 4 caracteres.";
+        message.style.color = "#ff6675";
 
-        return;
-
-    }
-
-
-    if(pass !== pass2){
-
-        registerMessage.textContent =
-            "❌ As senhas não são iguais.";
+        message.textContent =
+        "❌ As senhas não são iguais.";
 
         return;
 
@@ -1626,17 +1320,19 @@ registerForm.addEventListener("submit",(e)=>{
     const users = getUsers();
 
     const exists =
-        users.some(
-            u =>
-                u.username.toLowerCase() ===
-                username.toLowerCase()
-        );
+    users.some(
+        u =>
+        u.username.toLowerCase() ===
+        username.toLowerCase()
+    );
 
 
     if(exists){
 
-        registerMessage.textContent =
-            "❌ Esse nome de usuário já existe.";
+        message.style.color = "#ff6675";
+
+        message.textContent =
+        "❌ Esse usuário já existe.";
 
         return;
 
@@ -1646,8 +1342,13 @@ registerForm.addEventListener("submit",(e)=>{
     users.push({
 
         username:username,
-        password:pass,
-        createdAt:new Date().toISOString()
+
+        password:password,
+
+        createdAt:
+        new Date().toISOString(),
+
+        role:"member"
 
     });
 
@@ -1656,63 +1357,97 @@ registerForm.addEventListener("submit",(e)=>{
 
     setCurrentUser(username);
 
-    registerMessage.style.color =
-        "#6dffad";
+    message.style.color = "#48ff9b";
 
-    registerMessage.textContent =
-        "✅ Conta criada com sucesso!";
+    message.textContent =
+    "✅ Conta criada com sucesso!";
 
 
-    setTimeout(()=>{
-
-        authModal.classList.remove("active");
+    setTimeout(function(){
 
         registerForm.reset();
 
+        authModal.classList.remove("active");
+
         updateAccountButton();
 
-    },700);
+    },600);
 
-});
+};
 
 
-/* ==========================================
+/* ==================================================
    LOGIN
-========================================== */
+================================================== */
 
-loginForm.addEventListener("submit",(e)=>{
+loginForm.onsubmit = function(e){
 
     e.preventDefault();
 
     const username =
-        document.getElementById(
-            "loginUser"
-        ).value.trim();
+    document.getElementById("loginUser")
+    .value.trim();
 
-    const pass =
-        document.getElementById(
-            "loginPass"
-        ).value;
+    const password =
+    document.getElementById("loginPass")
+    .value;
 
+    const message =
+    document.getElementById("loginMessage");
+
+
+    /* CONTA DONA */
+
+    if(
+        username.toLowerCase() ===
+        OWNER_USERNAME &&
+        password === OWNER_PASSWORD
+    ){
+
+        setCurrentUser(OWNER_USERNAME);
+
+        message.style.color = "#48ff9b";
+
+        message.textContent =
+        "👑 Acesso de proprietário autorizado!";
+
+
+        setTimeout(function(){
+
+            loginForm.reset();
+
+            authModal.classList.remove("active");
+
+            updateAccountButton();
+
+            openAdmin();
+
+        },600);
+
+        return;
+
+    }
+
+
+    /* CONTAS NORMAIS */
 
     const users = getUsers();
 
     const user =
-        users.find(
-            u =>
-                u.username.toLowerCase() ===
-                username.toLowerCase() &&
-                u.password === pass
-        );
+    users.find(
+        u =>
+        u.username.toLowerCase() ===
+        username.toLowerCase() &&
+        u.password === password
+    );
 
 
     if(!user){
 
-        loginMessage.style.color =
-            "#ff7373";
+        message.style.color = "#ff6675";
 
-        loginMessage.textContent =
-            "❌ Usuário ou senha incorretos.";
+        message.textContent =
+        "❌ Usuário ou senha incorretos.";
 
         return;
 
@@ -1721,39 +1456,303 @@ loginForm.addEventListener("submit",(e)=>{
 
     setCurrentUser(user.username);
 
-    loginMessage.style.color =
-        "#6dffad";
+    message.style.color = "#48ff9b";
 
-    loginMessage.textContent =
-        "✅ Login realizado!";
+    message.textContent =
+    "✅ Login realizado!";
 
 
-    setTimeout(()=>{
-
-        authModal.classList.remove("active");
+    setTimeout(function(){
 
         loginForm.reset();
+
+        authModal.classList.remove("active");
 
         updateAccountButton();
 
     },500);
 
-});
+};
 
 
-/* ==========================================
-   SAIR
-========================================== */
+/* ==================================================
+   LOGOUT
+================================================== */
 
-document.getElementById("logoutButton")
-.addEventListener("click",logout);
+document.getElementById("logoutBtn")
+.onclick = function(){
+
+    logout();
+
+    userModal.classList.remove("active");
+
+};
 
 
-/* ==========================================
+document.getElementById("adminLogoutBtn")
+.onclick = function(){
+
+    logout();
+
+    adminModal.classList.remove("active");
+
+};
+
+
+/* ==================================================
+   ABRIR ADM
+================================================== */
+
+function openAdmin(){
+
+    const user = getCurrentUser();
+
+    if(
+        !user ||
+        user.toLowerCase() !==
+        OWNER_USERNAME
+    ){
+
+        alert(
+            "❌ Você não tem permissão para acessar o painel ADM."
+        );
+
+        return;
+
+    }
+
+    adminModal.classList.add("active");
+
+    renderUsers();
+
+}
+
+
+/* ==================================================
+   RENDERIZAR USUÁRIOS
+================================================== */
+
+function renderUsers(){
+
+    const users = getUsers();
+
+    const search =
+    document.getElementById("searchUsers")
+    .value
+    .trim()
+    .toLowerCase();
+
+    const table =
+    document.getElementById("userTable");
+
+
+    document.getElementById("totalUsers")
+    .textContent = users.length;
+
+
+    document.getElementById("loggedUser")
+    .textContent =
+    getCurrentUser() || "---";
+
+
+    const filtered =
+    users.filter(
+        u =>
+        u.username
+        .toLowerCase()
+        .includes(search)
+    );
+
+
+    if(filtered.length === 0){
+
+        table.innerHTML =
+        '<div class="no-users">Nenhum usuário cadastrado.</div>';
+
+        return;
+
+    }
+
+
+    table.innerHTML = "";
+
+
+    filtered.forEach(function(user){
+
+        const row =
+        document.createElement("div");
+
+        row.className = "user-line";
+
+
+        const avatar =
+        document.createElement("div");
+
+        avatar.className = "avatar";
+
+        avatar.textContent = "👤";
+
+
+        const info =
+        document.createElement("div");
+
+        info.className = "user-info-line";
+
+
+        const name =
+        document.createElement("strong");
+
+        name.textContent =
+        user.username;
+
+
+        if(
+            user.username.toLowerCase() ===
+            OWNER_USERNAME
+        ){
+
+            const badge =
+            document.createElement("span");
+
+            badge.className =
+            "admin-badge";
+
+            badge.textContent =
+            "DONO";
+
+            name.appendChild(badge);
+
+        }
+
+
+        const date =
+        document.createElement("small");
+
+
+        if(user.createdAt){
+
+            date.textContent =
+            "Criada em " +
+            new Date(
+                user.createdAt
+            ).toLocaleDateString("pt-BR");
+
+        }else{
+
+            date.textContent =
+            "Membro BLOXMAXY";
+
+        }
+
+
+        info.appendChild(name);
+        info.appendChild(date);
+
+
+        row.appendChild(avatar);
+        row.appendChild(info);
+
+
+        if(
+            user.username.toLowerCase() !==
+            OWNER_USERNAME
+        ){
+
+            const deleteBtn =
+            document.createElement("button");
+
+            deleteBtn.className =
+            "delete-btn";
+
+            deleteBtn.textContent =
+            "🗑️ EXCLUIR";
+
+
+            deleteBtn.onclick =
+            function(){
+
+                deleteUser(user.username);
+
+            };
+
+
+            row.appendChild(deleteBtn);
+
+        }
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+/* ==================================================
+   EXCLUIR
+================================================== */
+
+function deleteUser(username){
+
+    if(
+        username.toLowerCase() ===
+        OWNER_USERNAME
+    ){
+
+        alert(
+            "❌ A conta dona não pode ser excluída."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "Excluir a conta " +
+            username +
+            "?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const users =
+    getUsers().filter(
+        u =>
+        u.username !== username
+    );
+
+
+    saveUsers(users);
+
+    renderUsers();
+
+}
+
+
+/* ==================================================
+   PESQUISA
+================================================== */
+
+document.getElementById("searchUsers")
+.addEventListener(
+    "input",
+    renderUsers
+);
+
+
+/* ==================================================
    ESC
-========================================== */
+================================================== */
 
-document.addEventListener("keydown",(e)=>{
+document.addEventListener(
+"keydown",
+function(e){
 
     if(e.key === "Escape"){
 
@@ -1761,14 +1760,30 @@ document.addEventListener("keydown",(e)=>{
 
         userModal.classList.remove("active");
 
+        adminModal.classList.remove("active");
+
     }
 
 });
 
 
-/* ==========================================
-   INICIALIZAÇÃO
-========================================== */
+/* ==================================================
+   MOBILE
+================================================== */
+
+document.getElementById("menuBtn")
+.onclick = function(){
+
+    alert(
+        "Use o menu e role a página para acessar as seções da BLOXMAXY."
+    );
+
+};
+
+
+/* ==================================================
+   INICIAR
+================================================== */
 
 updateAccountButton();
 
