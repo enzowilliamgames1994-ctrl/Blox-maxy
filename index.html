@@ -7,587 +7,98 @@
 <title>BLOXMAXY</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+body {
+    margin: 0;
+    background: #080808;
+    color: white;
+    font-family: Arial;
+    text-align: center;
 }
 
-body{
-    background:#050505;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
+header {
+    padding: 20px;
+    background: #111;
+    border-bottom: 2px solid #00aaff;
 }
 
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    background:rgba(5,5,5,.92);
-    border-bottom:1px solid #1b1b1b;
-    z-index:100;
+h1 {
+    margin: 0;
+    color: #00aaff;
 }
 
-.logo{
-    font-size:22px;
-    font-weight:900;
-    letter-spacing:3px;
-    cursor:pointer;
+.container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 25px;
 }
 
-.logo span{
-    color:#00b7ff;
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 6px;
+    background: #00aaff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-nav{
-    display:flex;
-    align-items:center;
-    gap:8px;
+button:hover {
+    background: #0088cc;
 }
 
-nav a,
-button{
-    font-family:inherit;
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    background: #151515;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
 }
 
-nav a{
-    color:#aaa;
-    text-decoration:none;
-    padding:10px;
-    font-size:11px;
-    font-weight:bold;
+.box {
+    background: #111;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #222;
 }
 
-nav a:hover{
-    color:#00b7ff;
+.hidden {
+    display: none;
 }
 
-.discord{
-    background:#5865f2!important;
-    color:#fff!important;
-    border-radius:6px;
+.msg {
+    margin-top: 15px;
+    font-size: 14px;
 }
 
-.account-btn{
-    background:#071017;
-    color:#00b7ff;
-    border:1px solid #174b62;
-    border-radius:6px;
-    padding:10px 14px;
-    cursor:pointer;
-    font-size:10px;
-    font-weight:bold;
+.user {
+    background: #181818;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.menu-btn{
-    display:none;
-    background:#101820;
-    border:1px solid #23404f;
-    color:white;
-    padding:9px 12px;
-    border-radius:5px;
-    cursor:pointer;
+.delete {
+    width: auto;
+    margin: 0;
+    background: #cc3333;
+    padding: 8px;
 }
 
-.hero{
-    min-height:100vh;
-    padding:150px 7% 100px;
-    display:flex;
-    align-items:center;
+.logout {
+    background: #cc3333;
 }
 
-.hero-content{
-    max-width:850px;
-}
-
-.mini{
-    color:#00b7ff;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:3px;
-}
-
-.hero h1{
-    margin-top:18px;
-    font-size:clamp(55px,9vw,125px);
-    line-height:.9;
-    letter-spacing:-6px;
-}
-
-.hero h1 span{
-    color:#00b7ff;
-}
-
-.hero p{
-    max-width:600px;
-    margin-top:28px;
-    color:#777;
-    line-height:1.8;
-    font-size:13px;
-}
-
-.buttons{
-    display:flex;
-    gap:10px;
-    margin-top:28px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    padding:14px 20px;
-    border-radius:5px;
-    border:0;
-    cursor:pointer;
-    text-decoration:none;
-    font-size:10px;
-    font-weight:bold;
-}
-
-.primary{
-    background:#00b7ff;
-    color:#001018;
-}
-
-.outline{
-    background:transparent;
-    color:#fff;
-    border:1px solid #34434c;
-}
-
-.section{
-    max-width:1400px;
-    margin:auto;
-    padding:100px 7%;
-}
-
-.label{
-    color:#00b7ff;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-.section h2{
-    margin-top:10px;
-    font-size:35px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-top:35px;
-}
-
-.card{
-    min-height:210px;
-    background:#0a0d11;
-    border:1px solid #171d22;
-    padding:25px;
-    transition:.2s;
-}
-
-.card:hover{
-    transform:translateY(-4px);
-    border-color:#00b7ff;
-}
-
-.card-icon{
-    font-size:42px;
-    margin:25px 0;
-}
-
-.card h3{
-    font-size:15px;
-}
-
-.card p{
-    color:#69747e;
-    font-size:11px;
-    line-height:1.7;
-    margin-top:8px;
-}
-
-.rank{
-    margin-top:35px;
-    border:1px solid #171d22;
-    background:#090c10;
-}
-
-.rank-row{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:18px;
-    border-bottom:1px solid #171d22;
-}
-
-.rank-row:last-child{
-    border-bottom:0;
-}
-
-.place{
-    width:30px;
-    color:#68717a;
-    font-weight:bold;
-}
-
-.avatar{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#101c25;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.rank-name{
-    flex:1;
-}
-
-.rank-name strong{
-    display:block;
-    font-size:12px;
-}
-
-.rank-name small{
-    color:#68737d;
-    font-size:9px;
-}
-
-.xp{
-    color:#00b7ff;
-    font-size:10px;
-    font-weight:bold;
-}
-
-.discord-box{
-    text-align:center;
-    padding:65px 20px;
-    background:#080b10;
-    border:1px solid #252c45;
-}
-
-.discord-box p{
-    max-width:550px;
-    margin:15px auto 25px;
-    color:#777;
-    line-height:1.8;
-    font-size:12px;
-}
-
-footer{
-    border-top:1px solid #171717;
-    padding:35px 7%;
-    display:flex;
-    justify-content:space-between;
-    color:#555;
-    font-size:10px;
-}
-
-/* MODAIS */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:1000;
-    background:rgba(0,0,0,.88);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.active{
-    display:flex;
-}
-
-.box{
-    width:100%;
-    max-width:430px;
-    background:#090d12;
-    border:1px solid #164b63;
-    padding:30px;
-}
-
-.modal-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.modal-head h2{
-    font-size:21px;
-}
-
-.close{
-    width:35px;
-    height:35px;
-    background:#11171c;
-    border:1px solid #29353c;
-    color:#fff;
-    cursor:pointer;
-    border-radius:5px;
-}
-
-.subtitle{
-    color:#68737d;
-    font-size:11px;
-    line-height:1.7;
-    margin:10px 0 20px;
-}
-
-.tabs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-}
-
-.tab{
-    padding:12px;
-    background:#070a0d;
-    border:1px solid #1b303c;
-    color:#68737d;
-    cursor:pointer;
-    font-size:10px;
-    font-weight:bold;
-}
-
-.tab.active{
-    background:#00b7ff;
-    color:#001018;
-}
-
-.form{
-    display:none;
-}
-
-.form.active{
-    display:block;
-}
-
-label{
-    display:block;
-    color:#71808b;
-    font-size:9px;
-    font-weight:bold;
-    margin:13px 0 6px;
-}
-
-input{
-    width:100%;
-    padding:13px;
-    background:#03070b;
-    border:1px solid #1b3544;
-    color:white;
-    outline:none;
-    border-radius:5px;
-}
-
-input:focus{
-    border-color:#00b7ff;
-}
-
-.message{
-    min-height:20px;
-    margin-top:10px;
-    font-size:10px;
-}
-
-.user-info{
-    text-align:center;
-}
-
-.user-icon{
-    font-size:55px;
-    margin:20px 0;
-}
-
-.user-info h2{
-    font-size:21px;
-}
-
-.user-info p{
-    color:#68737d;
-    font-size:11px;
-    margin:10px 0 22px;
-}
-
-/* ADM */
-
-.admin-box{
-    width:100%;
-    max-width:950px;
-    max-height:90vh;
-    overflow:auto;
-    background:#080c10;
-    border:1px solid #15516b;
-    padding:30px;
-}
-
-.admin-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.admin-header h2{
-    color:#00b7ff;
-    margin-top:7px;
-}
-
-.admin-stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-}
-
-.admin-stat{
-    padding:20px;
-    background:#0c1218;
-    border:1px solid #182127;
-}
-
-.admin-stat strong{
-    display:block;
-    color:#00b7ff;
-    font-size:22px;
-}
-
-.admin-stat span{
-    color:#68737d;
-    font-size:9px;
-}
-
-.search{
-    margin:20px 0;
-}
-
-.user-table{
-    border:1px solid #182127;
-}
-
-.user-line{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:14px;
-    border-bottom:1px solid #182127;
-}
-
-.user-line:last-child{
-    border-bottom:0;
-}
-
-.user-info-line{
-    flex:1;
-}
-
-.user-info-line strong{
-    display:block;
-    font-size:11px;
-}
-
-.user-info-line small{
-    color:#65717b;
-    font-size:8px;
-}
-
-.delete-btn{
-    background:#291015;
-    color:#ff6675;
-    border:1px solid #632832;
-    padding:8px 10px;
-    border-radius:4px;
-    cursor:pointer;
-    font-size:9px;
-    font-weight:bold;
-}
-
-.no-users{
-    padding:30px;
-    text-align:center;
-    color:#68737d;
-    font-size:11px;
-}
-
-.admin-badge{
-    display:inline-block;
-    margin-left:6px;
-    padding:3px 6px;
-    border-radius:4px;
-    background:#00b7ff;
-    color:#001018;
-    font-size:7px;
-    font-weight:bold;
-}
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-    nav a{
-        display:none;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    nav{
-        gap:5px;
-    }
-
-    .grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:600px){
-
-    header{
-        padding:0 15px;
-    }
-
-    .hero{
-        padding:120px 20px 100px;
-    }
-
-    .hero h1{
-        font-size:55px;
-        letter-spacing:-4px;
-    }
-
-    .section{
-        padding:70px 20px;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .admin-stats{
-        grid-template-columns:1fr;
-    }
-
-    footer{
-        display:block;
-        text-align:center;
-    }
-
-    footer div+div{
-        margin-top:10px;
-    }
+.admin {
+    color: #00aaff;
+    font-weight: bold;
 }
 </style>
 </head>
@@ -595,1197 +106,399 @@ input:focus{
 <body>
 
 <header>
-
-<div class="logo" id="logo">
-BLOX<span>MAXY</span>
-</div>
-
-<nav>
-
-<a href="#equipe">Equipe</a>
-<a href="#ranking">Ranking</a>
-<a href="#eventos">Eventos</a>
-<a href="#regras">Regras</a>
-
-<a
-class="discord"
-href="https://discord.gg/pMgwP3KVC"
-target="_blank">
-💬 DISCORD
-</a>
-
-<button class="account-btn" id="accountBtn">
-👤 ENTRAR
-</button>
-
-<button class="menu-btn" id="menuBtn">
-☰
-</button>
-
-</nav>
-
+    <h1>BLOXMAXY</h1>
 </header>
 
+<div class="container">
 
-<section class="hero">
+    <!-- LOGIN -->
+    <div id="login" class="box">
 
-<div class="hero-content">
+        <h2>Entrar</h2>
 
-<div class="mini">
-BLOXMAXY TEAM • 2026
-</div>
+        <input id="loginUser" placeholder="Usuário">
+        <input id="loginPass" type="password" placeholder="Senha">
 
-<h1>
-WE ARE<br>
-<span>BLOXMAXY</span>
-</h1>
+        <button onclick="login()">ENTRAR</button>
+        <button onclick="mostrarCadastro()">CRIAR CONTA</button>
 
-<p>
-Uma comunidade criada para competir,
-evoluir e se divertir.
-</p>
+        <div id="loginMsg" class="msg"></div>
 
-<div class="buttons">
+    </div>
 
-<a href="#equipe" class="btn primary">
-CONHECER EQUIPE
-</a>
 
-<a
-href="https://discord.gg/pMgwP3KVC"
-target="_blank"
-class="btn discord">
-💬 ENTRAR NO DISCORD
-</a>
+    <!-- CADASTRO -->
+    <div id="cadastro" class="box hidden">
 
-</div>
+        <h2>Criar conta</h2>
 
-</div>
+        <input id="newUser" placeholder="Usuário">
+        <input id="newPass" type="password" placeholder="Senha">
 
-</section>
+        <button onclick="criarConta()">CRIAR CONTA</button>
+        <button onclick="mostrarLogin()">VOLTAR</button>
 
+        <div id="cadastroMsg" class="msg"></div>
 
-<section class="section" id="equipe">
+    </div>
 
-<div class="label">
-01 / TEAM
-</div>
 
-<h2>NOSSA EQUIPE</h2>
+    <!-- ÁREA DO USUÁRIO -->
+    <div id="usuario" class="box hidden">
 
-<div class="grid">
+        <h2>Bem-vindo!</h2>
 
-<div class="card">
-<div>01</div>
-<div class="card-icon">👑</div>
-<h3>CEO</h3>
-<p>Liderança da BLOXMAXY.</p>
-</div>
+        <p id="nomeUsuario"></p>
 
-<div class="card">
-<div>02</div>
-<div class="card-icon">⚡</div>
-<h3>ADMIN</h3>
-<p>Administração da comunidade.</p>
-</div>
+        <button onclick="sair()" class="logout">
+            SAIR
+        </button>
 
-<div class="card">
-<div>03</div>
-<div class="card-icon">🛡️</div>
-<h3>MOD</h3>
-<p>Moderação dos membros.</p>
-</div>
+    </div>
 
-<div class="card">
-<div>04</div>
-<div class="card-icon">🎮</div>
-<h3>MEMBER</h3>
-<p>Membros da comunidade.</p>
-</div>
 
-</div>
+    <!-- ADM -->
+    <div id="adm" class="box hidden">
 
-</section>
+        <h2 class="admin">👑 PAINEL ADM</h2>
 
+        <p>Usuários cadastrados:</p>
 
-<section class="section" id="ranking">
+        <div id="listaUsuarios"></div>
 
-<div class="label">
-02 / RANKING
-</div>
+        <button onclick="sair()" class="logout">
+            SAIR
+        </button>
 
-<h2>TOP PLAYERS</h2>
-
-<div class="rank">
-
-<div class="rank-row">
-<div class="place">01</div>
-<div class="avatar">👑</div>
-<div class="rank-name">
-<strong>MAXY_MASTER</strong>
-<small>ELITE MEMBER</small>
-</div>
-<div class="xp">9850 XP</div>
-</div>
-
-<div class="rank-row">
-<div class="place">02</div>
-<div class="avatar">⚡</div>
-<div class="rank-name">
-<strong>BLOX_PLAYER</strong>
-<small>VETERAN</small>
-</div>
-<div class="xp">8720 XP</div>
-</div>
-
-<div class="rank-row">
-<div class="place">03</div>
-<div class="avatar">🔥</div>
-<div class="rank-name">
-<strong>SHADOW_X</strong>
-<small>MEMBER</small>
-</div>
-<div class="xp">7430 XP</div>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section" id="eventos">
-
-<div class="label">
-03 / EVENTS
-</div>
-
-<h2>EVENTOS</h2>
-
-<div class="grid">
-
-<div class="card">
-<div class="card-icon">🏆</div>
-<h3>CAMPEONATO</h3>
-<p>Torneios internos da BLOXMAXY.</p>
-</div>
-
-<div class="card">
-<div class="card-icon">⚔️</div>
-<h3>DESAFIO PVP</h3>
-<p>Desafios entre membros.</p>
-</div>
-
-<div class="card">
-<div class="card-icon">🎯</div>
-<h3>MISSÃO</h3>
-<p>Missões especiais.</p>
-</div>
-
-<div class="card">
-<div class="card-icon">🔥</div>
-<h3>EVENTO ESPECIAL</h3>
-<p>Eventos da comunidade.</p>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section" id="regras">
-
-<div class="label">
-04 / RULES
-</div>
-
-<h2>REGRAS</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>RESPEITO</h3>
-<p>Respeite todos os membros.</p>
-</div>
-
-<div class="card">
-<h3>FAIR PLAY</h3>
-<p>Não utilize cheats ou exploits.</p>
-</div>
-
-<div class="card">
-<h3>COMUNIDADE</h3>
-<p>Não faça spam ou flood.</p>
-</div>
-
-<div class="card">
-<h3>ROBLOX</h3>
-<p>Respeite as regras da plataforma.</p>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section">
-
-<div class="discord-box">
-
-<div class="label">
-BLOXMAXY COMMUNITY
-</div>
-
-<h2>ENTRE PARA A COMUNIDADE</h2>
-
-<p>
-Entre no nosso Discord para conversar,
-participar dos eventos e acompanhar novidades.
-</p>
-
-<a
-href="https://discord.gg/pMgwP3KVC"
-target="_blank"
-class="btn discord">
-💬 ENTRAR NO DISCORD
-</a>
-
-</div>
-
-</section>
-
-
-<footer>
-
-<div>
-© 2026 BLOXMAXY
-</div>
-
-<div>
-TEAM • COMMUNITY • COMPETITION
-</div>
-
-</footer>
-
-
-<!-- LOGIN / CADASTRO -->
-
-<div class="modal" id="authModal">
-
-<div class="box">
-
-<div class="modal-head">
-<h2>👤 CONTA</h2>
-<button class="close" id="closeAuth">✕</button>
-</div>
-
-<p class="subtitle">
-Entre na sua conta ou crie uma nova conta BLOXMAXY.
-</p>
-
-<div class="tabs">
-
-<button class="tab active" id="loginTab">
-ENTRAR
-</button>
-
-<button class="tab" id="registerTab">
-CRIAR CONTA
-</button>
-
-</div>
-
-
-<form class="form active" id="loginForm">
-
-<label>Usuário</label>
-
-<input
-id="loginUser"
-type="text"
-required>
-
-<label>Senha</label>
-
-<input
-id="loginPass"
-type="password"
-required>
-
-<button
-class="btn primary"
-style="width:100%;margin-top:18px">
-ENTRAR
-</button>
-
-<div class="message" id="loginMessage"></div>
-
-</form>
-
-
-<form class="form" id="registerForm">
-
-<label>Usuário</label>
-
-<input
-id="registerUser"
-type="text"
-minlength="3"
-maxlength="20"
-required>
-
-<label>Senha</label>
-
-<input
-id="registerPass"
-type="password"
-minlength="4"
-required>
-
-<label>Confirmar senha</label>
-
-<input
-id="registerPass2"
-type="password"
-required>
-
-<button
-class="btn primary"
-style="width:100%;margin-top:18px">
-CRIAR CONTA
-</button>
-
-<div class="message" id="registerMessage"></div>
-
-</form>
-
-</div>
-
-</div>
-
-
-<!-- USUÁRIO -->
-
-<div class="modal" id="userModal">
-
-<div class="box user-info">
-
-<div class="modal-head">
-<div></div>
-<button class="close" id="closeUser">✕</button>
-</div>
-
-<div class="user-icon">👤</div>
-
-<h2 id="welcomeUser"></h2>
-
-<p>
-Você está conectado à BLOXMAXY.
-</p>
-
-<button
-class="btn primary"
-id="logoutBtn"
-style="width:100%">
-🚪 SAIR
-</button>
-
-</div>
-
-</div>
-
-
-<!-- PAINEL ADM -->
-
-<div class="modal" id="adminModal">
-
-<div class="admin-box">
-
-<div class="admin-header">
-
-<div>
-
-<div class="label">
-BLOXMAXY SYSTEM
-</div>
-
-<h2>👑 PAINEL ADM</h2>
-
-</div>
-
-<button class="close" id="closeAdmin">
-✕
-</button>
-
-</div>
-
-
-<div class="admin-stats">
-
-<div class="admin-stat">
-<strong id="totalUsers">0</strong>
-<span>Usuários cadastrados</span>
-</div>
-
-<div class="admin-stat">
-<strong id="loggedUser">---</strong>
-<span>Usuário logado</span>
-</div>
-
-<div class="admin-stat">
-<strong>ACESSO TOTAL</strong>
-<span>admenzo</span>
-</div>
-
-</div>
-
-
-<div class="search">
-
-<input
-id="searchUsers"
-type="text"
-placeholder="🔎 Pesquisar usuário...">
-
-</div>
-
-
-<div class="user-table" id="userTable"></div>
-
-
-<button
-class="btn outline"
-id="adminLogoutBtn"
-style="margin-top:18px">
-🚪 SAIR DO PAINEL
-</button>
-
-</div>
+    </div>
 
 </div>
 
 
 <script>
 
-/* ==================================================
-   CONFIGURAÇÃO DA CONTA DONA
-================================================== */
+/* =====================================
+   CONTA ADM
+===================================== */
 
-const OWNER_USERNAME = "admenzo";
-const OWNER_PASSWORD = "souceo";
+const ADM_USER = "admenzo";
+const ADM_PASS = "souceo";
 
 
-/* ==================================================
-   BANCO LOCAL
-================================================== */
+/* =====================================
+   PEGAR USUÁRIOS
+===================================== */
 
-function getUsers(){
+function pegarUsuarios() {
 
-    try{
-
-        return JSON.parse(
-            localStorage.getItem("bloxmaxyUsers")
-        ) || [];
-
-    }catch{
-
-        return [];
-
-    }
+    return JSON.parse(
+        localStorage.getItem("bloxmaxyUsuarios") || "[]"
+    );
 
 }
 
-function saveUsers(users){
+
+/* =====================================
+   SALVAR USUÁRIOS
+===================================== */
+
+function salvarUsuarios(usuarios) {
 
     localStorage.setItem(
-        "bloxmaxyUsers",
-        JSON.stringify(users)
+        "bloxmaxyUsuarios",
+        JSON.stringify(usuarios)
     );
 
 }
 
 
-/* ==================================================
-   USUÁRIO LOGADO
-================================================== */
+/* =====================================
+   MOSTRAR LOGIN
+===================================== */
 
-function getCurrentUser(){
+function mostrarLogin() {
 
-    return localStorage.getItem(
-        "bloxmaxyCurrentUser"
-    );
+    document.getElementById("login")
+        .classList.remove("hidden");
 
-}
-
-function setCurrentUser(username){
-
-    localStorage.setItem(
-        "bloxmaxyCurrentUser",
-        username
-    );
-
-}
-
-function logout(){
-
-    localStorage.removeItem(
-        "bloxmaxyCurrentUser"
-    );
-
-    updateAccountButton();
+    document.getElementById("cadastro")
+        .classList.add("hidden");
 
 }
 
 
-/* ==================================================
-   ELEMENTOS
-================================================== */
+/* =====================================
+   MOSTRAR CADASTRO
+===================================== */
 
-const accountBtn =
-document.getElementById("accountBtn");
+function mostrarCadastro() {
 
-const authModal =
-document.getElementById("authModal");
+    document.getElementById("login")
+        .classList.add("hidden");
 
-const userModal =
-document.getElementById("userModal");
-
-const adminModal =
-document.getElementById("adminModal");
-
-
-/* ==================================================
-   BOTÃO CONTA
-================================================== */
-
-function updateAccountButton(){
-
-    const user = getCurrentUser();
-
-    if(user){
-
-        accountBtn.textContent =
-        "👤 " + user.toUpperCase();
-
-    }else{
-
-        accountBtn.textContent =
-        "👤 ENTRAR";
-
-    }
+    document.getElementById("cadastro")
+        .classList.remove("hidden");
 
 }
 
-accountBtn.onclick = function(){
 
-    const user = getCurrentUser();
+/* =====================================
+   CRIAR CONTA
+===================================== */
 
-    if(!user){
-
-        authModal.classList.add("active");
-
-        return;
-
-    }
-
-    if(user.toLowerCase() === OWNER_USERNAME){
-
-        openAdmin();
-
-        return;
-
-    }
-
-    document.getElementById("welcomeUser")
-    .textContent =
-    "OLÁ, " + user.toUpperCase() + "!";
-
-    userModal.classList.add("active");
-
-};
-
-
-/* ==================================================
-   FECHAR
-================================================== */
-
-document.getElementById("closeAuth").onclick =
-function(){
-
-    authModal.classList.remove("active");
-
-};
-
-document.getElementById("closeUser").onclick =
-function(){
-
-    userModal.classList.remove("active");
-
-};
-
-document.getElementById("closeAdmin").onclick =
-function(){
-
-    adminModal.classList.remove("active");
-
-};
-
-
-/* ==================================================
-   TABS
-================================================== */
-
-const loginTab =
-document.getElementById("loginTab");
-
-const registerTab =
-document.getElementById("registerTab");
-
-const loginForm =
-document.getElementById("loginForm");
-
-const registerForm =
-document.getElementById("registerForm");
-
-
-loginTab.onclick = function(){
-
-    loginTab.classList.add("active");
-    registerTab.classList.remove("active");
-
-    loginForm.classList.add("active");
-    registerForm.classList.remove("active");
-
-};
-
-
-registerTab.onclick = function(){
-
-    registerTab.classList.add("active");
-    loginTab.classList.remove("active");
-
-    registerForm.classList.add("active");
-    loginForm.classList.remove("active");
-
-};
-
-
-/* ==================================================
-   CADASTRO
-================================================== */
-
-registerForm.onsubmit = function(e){
-
-    e.preventDefault();
-
-    const username =
-    document.getElementById("registerUser")
-    .value.trim();
-
-    const password =
-    document.getElementById("registerPass")
-    .value;
-
-    const password2 =
-    document.getElementById("registerPass2")
-    .value;
-
-    const message =
-    document.getElementById("registerMessage");
-
-
-    if(username.toLowerCase() === OWNER_USERNAME){
-
-        message.style.color = "#ff6675";
-
-        message.textContent =
-        "❌ Esse nome de usuário é reservado.";
-
-        return;
-
-    }
-
-
-    if(password !== password2){
-
-        message.style.color = "#ff6675";
-
-        message.textContent =
-        "❌ As senhas não são iguais.";
-
-        return;
-
-    }
-
-
-    const users = getUsers();
-
-    const exists =
-    users.some(
-        u =>
-        u.username.toLowerCase() ===
-        username.toLowerCase()
-    );
-
-
-    if(exists){
-
-        message.style.color = "#ff6675";
-
-        message.textContent =
-        "❌ Esse usuário já existe.";
-
-        return;
-
-    }
-
-
-    users.push({
-
-        username:username,
-
-        password:password,
-
-        createdAt:
-        new Date().toISOString(),
-
-        role:"member"
-
-    });
-
-
-    saveUsers(users);
-
-    setCurrentUser(username);
-
-    message.style.color = "#48ff9b";
-
-    message.textContent =
-    "✅ Conta criada com sucesso!";
-
-
-    setTimeout(function(){
-
-        registerForm.reset();
-
-        authModal.classList.remove("active");
-
-        updateAccountButton();
-
-    },600);
-
-};
-
-
-/* ==================================================
-   LOGIN
-================================================== */
-
-loginForm.onsubmit = function(e){
-
-    e.preventDefault();
-
-    const username =
-    document.getElementById("loginUser")
-    .value.trim();
-
-    const password =
-    document.getElementById("loginPass")
-    .value;
-
-    const message =
-    document.getElementById("loginMessage");
-
-
-    /* CONTA DONA */
-
-    if(
-        username.toLowerCase() ===
-        OWNER_USERNAME &&
-        password === OWNER_PASSWORD
-    ){
-
-        setCurrentUser(OWNER_USERNAME);
-
-        message.style.color = "#48ff9b";
-
-        message.textContent =
-        "👑 Acesso de proprietário autorizado!";
-
-
-        setTimeout(function(){
-
-            loginForm.reset();
-
-            authModal.classList.remove("active");
-
-            updateAccountButton();
-
-            openAdmin();
-
-        },600);
-
-        return;
-
-    }
-
-
-    /* CONTAS NORMAIS */
-
-    const users = getUsers();
+function criarConta() {
 
     const user =
-    users.find(
-        u =>
-        u.username.toLowerCase() ===
-        username.toLowerCase() &&
-        u.password === password
-    );
+        document.getElementById("newUser")
+        .value.trim();
+
+    const pass =
+        document.getElementById("newPass")
+        .value;
+
+    const msg =
+        document.getElementById("cadastroMsg");
 
 
-    if(!user){
+    if (!user || !pass) {
 
-        message.style.color = "#ff6675";
+        msg.textContent =
+            "Preencha todos os campos.";
 
-        message.textContent =
-        "❌ Usuário ou senha incorretos.";
+        return;
+
+    }
+
+
+    if (user.toLowerCase() === ADM_USER) {
+
+        msg.textContent =
+            "Esse nome é reservado.";
 
         return;
 
     }
 
 
-    setCurrentUser(user.username);
-
-    message.style.color = "#48ff9b";
-
-    message.textContent =
-    "✅ Login realizado!";
+    let usuarios = pegarUsuarios();
 
 
-    setTimeout(function(){
+    if (
+        usuarios.some(
+            u => u.user.toLowerCase() === user.toLowerCase()
+        )
+    ) {
 
-        loginForm.reset();
-
-        authModal.classList.remove("active");
-
-        updateAccountButton();
-
-    },500);
-
-};
-
-
-/* ==================================================
-   LOGOUT
-================================================== */
-
-document.getElementById("logoutBtn")
-.onclick = function(){
-
-    logout();
-
-    userModal.classList.remove("active");
-
-};
-
-
-document.getElementById("adminLogoutBtn")
-.onclick = function(){
-
-    logout();
-
-    adminModal.classList.remove("active");
-
-};
-
-
-/* ==================================================
-   ABRIR ADM
-================================================== */
-
-function openAdmin(){
-
-    const user = getCurrentUser();
-
-    if(
-        !user ||
-        user.toLowerCase() !==
-        OWNER_USERNAME
-    ){
-
-        alert(
-            "❌ Você não tem permissão para acessar o painel ADM."
-        );
+        msg.textContent =
+            "Esse usuário já existe.";
 
         return;
 
     }
 
-    adminModal.classList.add("active");
 
-    renderUsers();
+    usuarios.push({
+
+        user: user,
+        pass: pass
+
+    });
+
+
+    salvarUsuarios(usuarios);
+
+
+    msg.textContent =
+        "✅ Conta criada! Agora entre.";
+
+
+    document.getElementById("newUser").value = "";
+    document.getElementById("newPass").value = "";
 
 }
 
 
-/* ==================================================
-   RENDERIZAR USUÁRIOS
-================================================== */
+/* =====================================
+   LOGIN
+===================================== */
 
-function renderUsers(){
+function login() {
 
-    const users = getUsers();
+    const user =
+        document.getElementById("loginUser")
+        .value.trim();
 
-    const search =
-    document.getElementById("searchUsers")
-    .value
-    .trim()
-    .toLowerCase();
+    const pass =
+        document.getElementById("loginPass")
+        .value;
 
-    const table =
-    document.getElementById("userTable");
-
-
-    document.getElementById("totalUsers")
-    .textContent = users.length;
+    const msg =
+        document.getElementById("loginMsg");
 
 
-    document.getElementById("loggedUser")
-    .textContent =
-    getCurrentUser() || "---";
+    /* ADM */
 
+    if (
+        user.toLowerCase() === ADM_USER &&
+        pass === ADM_PASS
+    ) {
 
-    const filtered =
-    users.filter(
-        u =>
-        u.username
-        .toLowerCase()
-        .includes(search)
-    );
+        document.getElementById("login")
+            .classList.add("hidden");
 
+        document.getElementById("adm")
+            .classList.remove("hidden");
 
-    if(filtered.length === 0){
+        carregarUsuarios();
 
-        table.innerHTML =
-        '<div class="no-users">Nenhum usuário cadastrado.</div>';
+        msg.textContent = "";
 
         return;
 
     }
 
 
-    table.innerHTML = "";
+    /* USUÁRIO NORMAL */
+
+    const usuarios = pegarUsuarios();
 
 
-    filtered.forEach(function(user){
-
-        const row =
-        document.createElement("div");
-
-        row.className = "user-line";
-
-
-        const avatar =
-        document.createElement("div");
-
-        avatar.className = "avatar";
-
-        avatar.textContent = "👤";
+    const encontrado =
+        usuarios.find(
+            u =>
+                u.user.toLowerCase() === user.toLowerCase() &&
+                u.pass === pass
+        );
 
 
-        const info =
-        document.createElement("div");
+    if (!encontrado) {
 
-        info.className = "user-info-line";
+        msg.textContent =
+            "❌ Usuário ou senha incorretos.";
 
+        return;
 
-        const name =
-        document.createElement("strong");
-
-        name.textContent =
-        user.username;
+    }
 
 
-        if(
-            user.username.toLowerCase() ===
-            OWNER_USERNAME
-        ){
+    document.getElementById("login")
+        .classList.add("hidden");
 
-            const badge =
-            document.createElement("span");
-
-            badge.className =
-            "admin-badge";
-
-            badge.textContent =
-            "DONO";
-
-            name.appendChild(badge);
-
-        }
+    document.getElementById("usuario")
+        .classList.remove("hidden");
 
 
-        const date =
-        document.createElement("small");
+    document.getElementById("nomeUsuario")
+        .textContent =
+        "Você entrou como: " + encontrado.user;
+
+}
 
 
-        if(user.createdAt){
+/* =====================================
+   CARREGAR USUÁRIOS NO ADM
+===================================== */
 
-            date.textContent =
-            "Criada em " +
-            new Date(
-                user.createdAt
-            ).toLocaleDateString("pt-BR");
+function carregarUsuarios() {
 
-        }else{
+    const lista =
+        document.getElementById("listaUsuarios");
 
-            date.textContent =
-            "Membro BLOXMAXY";
-
-        }
+    const usuarios =
+        pegarUsuarios();
 
 
-        info.appendChild(name);
-        info.appendChild(date);
+    lista.innerHTML = "";
 
 
-        row.appendChild(avatar);
-        row.appendChild(info);
+    if (usuarios.length === 0) {
+
+        lista.innerHTML =
+            "<p>Nenhum usuário cadastrado.</p>";
+
+        return;
+
+    }
 
 
-        if(
-            user.username.toLowerCase() !==
-            OWNER_USERNAME
-        ){
+    usuarios.forEach(function(usuario, index) {
 
-            const deleteBtn =
-            document.createElement("button");
+        const div =
+            document.createElement("div");
 
-            deleteBtn.className =
-            "delete-btn";
-
-            deleteBtn.textContent =
-            "🗑️ EXCLUIR";
+        div.className = "user";
 
 
-            deleteBtn.onclick =
-            function(){
-
-                deleteUser(user.username);
-
-            };
-
-
-            row.appendChild(deleteBtn);
-
-        }
+        div.innerHTML = `
+            <span>👤 ${usuario.user}</span>
+            <button
+                class="delete"
+                onclick="excluirUsuario(${index})">
+                EXCLUIR
+            </button>
+        `;
 
 
-        table.appendChild(row);
+        lista.appendChild(div);
 
     });
 
 }
 
 
-/* ==================================================
-   EXCLUIR
-================================================== */
+/* =====================================
+   EXCLUIR USUÁRIO
+===================================== */
 
-function deleteUser(username){
+function excluirUsuario(index) {
 
-    if(
-        username.toLowerCase() ===
-        OWNER_USERNAME
-    ){
-
-        alert(
-            "❌ A conta dona não pode ser excluída."
-        );
-
-        return;
-
-    }
-
-
-    if(
+    if (
         !confirm(
-            "Excluir a conta " +
-            username +
-            "?"
+            "Tem certeza que quer excluir esse usuário?"
         )
-    ){
+    ) {
 
         return;
 
     }
 
 
-    const users =
-    getUsers().filter(
-        u =>
-        u.username !== username
-    );
+    let usuarios =
+        pegarUsuarios();
 
 
-    saveUsers(users);
+    usuarios.splice(index, 1);
 
-    renderUsers();
+
+    salvarUsuarios(usuarios);
+
+
+    carregarUsuarios();
 
 }
 
 
-/* ==================================================
-   PESQUISA
-================================================== */
+/* =====================================
+   SAIR
+===================================== */
 
-document.getElementById("searchUsers")
-.addEventListener(
-    "input",
-    renderUsers
-);
+function sair() {
 
+    document.getElementById("usuario")
+        .classList.add("hidden");
 
-/* ==================================================
-   ESC
-================================================== */
+    document.getElementById("adm")
+        .classList.add("hidden");
 
-document.addEventListener(
-"keydown",
-function(e){
-
-    if(e.key === "Escape"){
-
-        authModal.classList.remove("active");
-
-        userModal.classList.remove("active");
-
-        adminModal.classList.remove("active");
-
-    }
-
-});
+    document.getElementById("login")
+        .classList.remove("hidden");
 
 
-/* ==================================================
-   MOBILE
-================================================== */
+    document.getElementById("loginUser").value = "";
+    document.getElementById("loginPass").value = "";
+    document.getElementById("loginMsg").textContent = "";
 
-document.getElementById("menuBtn")
-.onclick = function(){
-
-    alert(
-        "Use o menu e role a página para acessar as seções da BLOXMAXY."
-    );
-
-};
-
-
-/* ==================================================
-   INICIAR
-================================================== */
-
-updateAccountButton();
+}
 
 </script>
 
