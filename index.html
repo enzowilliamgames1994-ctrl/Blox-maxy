@@ -29,7 +29,7 @@ header{
     align-items:center;
     justify-content:space-between;
     padding:0 6%;
-    background:rgba(5,5,5,.92);
+    background:rgba(5,5,5,.94);
     border-bottom:1px solid #1b1b1b;
     z-index:100;
 }
@@ -49,11 +49,6 @@ nav{
     display:flex;
     align-items:center;
     gap:8px;
-}
-
-nav a,
-button{
-    font-family:inherit;
 }
 
 nav a{
@@ -93,6 +88,32 @@ nav a:hover{
     padding:9px 12px;
     border-radius:5px;
     cursor:pointer;
+}
+
+.mobile-nav{
+    display:none;
+}
+
+.mobile-nav.active{
+    display:flex;
+    position:fixed;
+    top:70px;
+    left:0;
+    right:0;
+    flex-direction:column;
+    background:#080b0e;
+    border-bottom:1px solid #1b303c;
+    padding:15px;
+    z-index:99;
+}
+
+.mobile-nav a{
+    color:#aaa;
+    text-decoration:none;
+    padding:14px;
+    font-size:11px;
+    font-weight:bold;
+    border-bottom:1px solid #151b20;
 }
 
 .hero{
@@ -580,6 +601,18 @@ input:focus{
         grid-template-columns:1fr;
     }
 
+    .admin-box{
+        padding:20px;
+    }
+
+    .user-line{
+        flex-wrap:wrap;
+    }
+
+    .delete-btn{
+        margin-left:50px;
+    }
+
     footer{
         display:block;
         text-align:center;
@@ -610,7 +643,8 @@ BLOX<span>MAXY</span>
 <a
 class="discord"
 href="https://discord.gg/pMgwP3KVC"
-target="_blank">
+target="_blank"
+rel="noopener">
 💬 DISCORD
 </a>
 
@@ -625,6 +659,24 @@ target="_blank">
 </nav>
 
 </header>
+
+<!-- MENU MOBILE -->
+
+<div class="mobile-nav" id="mobileNav">
+
+<a href="#equipe">EQUIPE</a>
+<a href="#ranking">RANKING</a>
+<a href="#eventos">EVENTOS</a>
+<a href="#regras">REGRAS</a>
+
+<a
+href="https://discord.gg/pMgwP3KVC"
+target="_blank"
+rel="noopener">
+💬 DISCORD
+</a>
+
+</div>
 
 
 <section class="hero">
@@ -654,6 +706,7 @@ CONHECER EQUIPE
 <a
 href="https://discord.gg/pMgwP3KVC"
 target="_blank"
+rel="noopener"
 class="btn discord">
 💬 ENTRAR NO DISCORD
 </a>
@@ -845,6 +898,7 @@ participar dos eventos e acompanhar novidades.
 <a
 href="https://discord.gg/pMgwP3KVC"
 target="_blank"
+rel="noopener"
 class="btn discord">
 💬 ENTRAR NO DISCORD
 </a>
@@ -874,8 +928,13 @@ TEAM • COMMUNITY • COMPETITION
 <div class="box">
 
 <div class="modal-head">
+
 <h2>👤 CONTA</h2>
-<button class="close" id="closeAuth">✕</button>
+
+<button class="close" id="closeAuth">
+✕
+</button>
+
 </div>
 
 <p class="subtitle">
@@ -902,6 +961,7 @@ CRIAR CONTA
 <input
 id="loginUser"
 type="text"
+autocomplete="username"
 required>
 
 <label>Senha</label>
@@ -909,9 +969,11 @@ required>
 <input
 id="loginPass"
 type="password"
+autocomplete="current-password"
 required>
 
 <button
+type="submit"
 class="btn primary"
 style="width:100%;margin-top:18px">
 ENTRAR
@@ -949,6 +1011,7 @@ type="password"
 required>
 
 <button
+type="submit"
 class="btn primary"
 style="width:100%;margin-top:18px">
 CRIAR CONTA
@@ -971,10 +1034,15 @@ CRIAR CONTA
 
 <div class="modal-head">
 <div></div>
-<button class="close" id="closeUser">✕</button>
+
+<button class="close" id="closeUser">
+✕
+</button>
 </div>
 
-<div class="user-icon">👤</div>
+<div class="user-icon">
+👤
+</div>
 
 <h2 id="welcomeUser"></h2>
 
@@ -1022,18 +1090,39 @@ BLOXMAXY SYSTEM
 <div class="admin-stats">
 
 <div class="admin-stat">
-<strong id="totalUsers">0</strong>
-<span>Usuários cadastrados</span>
+
+<strong id="totalUsers">
+0
+</strong>
+
+<span>
+Usuários cadastrados
+</span>
+
 </div>
 
 <div class="admin-stat">
-<strong id="loggedUser">---</strong>
-<span>Usuário logado</span>
+
+<strong id="loggedUser">
+---
+</strong>
+
+<span>
+Usuário logado
+</span>
+
 </div>
 
 <div class="admin-stat">
-<strong>ACESSO TOTAL</strong>
-<span>admenzo</span>
+
+<strong>
+ACESSO TOTAL
+</strong>
+
+<span>
+admenzo
+</span>
+
 </div>
 
 </div>
@@ -1049,7 +1138,10 @@ placeholder="🔎 Pesquisar usuário...">
 </div>
 
 
-<div class="user-table" id="userTable"></div>
+<div
+class="user-table"
+id="userTable">
+</div>
 
 
 <button
@@ -1066,79 +1158,17 @@ style="margin-top:18px">
 
 <script>
 
-/* ==================================================
-   CONFIGURAÇÃO DA CONTA DONA
-================================================== */
+/* ==========================================
+   CONTA DONA
+========================================== */
 
 const OWNER_USERNAME = "admenzo";
 const OWNER_PASSWORD = "souceo";
 
 
-/* ==================================================
-   BANCO LOCAL
-================================================== */
-
-function getUsers(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem("bloxmaxyUsers")
-        ) || [];
-
-    }catch{
-
-        return [];
-
-    }
-
-}
-
-function saveUsers(users){
-
-    localStorage.setItem(
-        "bloxmaxyUsers",
-        JSON.stringify(users)
-    );
-
-}
-
-
-/* ==================================================
-   USUÁRIO LOGADO
-================================================== */
-
-function getCurrentUser(){
-
-    return localStorage.getItem(
-        "bloxmaxyCurrentUser"
-    );
-
-}
-
-function setCurrentUser(username){
-
-    localStorage.setItem(
-        "bloxmaxyCurrentUser",
-        username
-    );
-
-}
-
-function logout(){
-
-    localStorage.removeItem(
-        "bloxmaxyCurrentUser"
-    );
-
-    updateAccountButton();
-
-}
-
-
-/* ==================================================
+/* ==========================================
    ELEMENTOS
-================================================== */
+========================================== */
 
 const accountBtn =
 document.getElementById("accountBtn");
@@ -1152,42 +1182,135 @@ document.getElementById("userModal");
 const adminModal =
 document.getElementById("adminModal");
 
+const mobileNav =
+document.getElementById("mobileNav");
 
-/* ==================================================
-   BOTÃO CONTA
-================================================== */
 
-function updateAccountButton(){
+/* ==========================================
+   USUÁRIOS
+========================================== */
 
-    const user = getCurrentUser();
+function getUsers(){
 
-    if(user){
+    try{
 
-        accountBtn.textContent =
-        "👤 " + user.toUpperCase();
+        return JSON.parse(
+            localStorage.getItem("bloxmaxyUsers")
+        ) || [];
 
-    }else{
+    }catch(error){
 
-        accountBtn.textContent =
-        "👤 ENTRAR";
+        return [];
 
     }
 
 }
 
-accountBtn.onclick = function(){
 
-    const user = getCurrentUser();
+function saveUsers(users){
+
+    localStorage.setItem(
+        "bloxmaxyUsers",
+        JSON.stringify(users)
+    );
+
+}
+
+
+/* ==========================================
+   LOGIN ATUAL
+========================================== */
+
+function getCurrentUser(){
+
+    return localStorage.getItem(
+        "bloxmaxyCurrentUser"
+    );
+
+}
+
+
+function setCurrentUser(username){
+
+    localStorage.setItem(
+        "bloxmaxyCurrentUser",
+        username
+    );
+
+}
+
+
+function logout(){
+
+    localStorage.removeItem(
+        "bloxmaxyCurrentUser"
+    );
+
+    updateAccountButton();
+
+}
+
+
+/* ==========================================
+   BOTÃO DA CONTA
+========================================== */
+
+function updateAccountButton(){
+
+    const user =
+    getCurrentUser();
+
 
     if(!user){
 
-        authModal.classList.add("active");
+        accountBtn.textContent =
+        "👤 ENTRAR";
 
         return;
 
     }
 
-    if(user.toLowerCase() === OWNER_USERNAME){
+
+    if(
+        user.toLowerCase() ===
+        OWNER_USERNAME
+    ){
+
+        accountBtn.textContent =
+        "👑 ADM";
+
+    }else{
+
+        accountBtn.textContent =
+        "👤 " + user.toUpperCase();
+
+    }
+
+}
+
+
+accountBtn.onclick =
+function(){
+
+    const user =
+    getCurrentUser();
+
+
+    if(!user){
+
+        authModal.classList.add(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        user.toLowerCase() ===
+        OWNER_USERNAME
+    ){
 
         openAdmin();
 
@@ -1195,44 +1318,25 @@ accountBtn.onclick = function(){
 
     }
 
-    document.getElementById("welcomeUser")
-    .textContent =
-    "OLÁ, " + user.toUpperCase() + "!";
 
-    userModal.classList.add("active");
+    document.getElementById(
+        "welcomeUser"
+    ).textContent =
+    "OLÁ, " +
+    user.toUpperCase() +
+    "!";
 
-};
 
-
-/* ==================================================
-   FECHAR
-================================================== */
-
-document.getElementById("closeAuth").onclick =
-function(){
-
-    authModal.classList.remove("active");
-
-};
-
-document.getElementById("closeUser").onclick =
-function(){
-
-    userModal.classList.remove("active");
-
-};
-
-document.getElementById("closeAdmin").onclick =
-function(){
-
-    adminModal.classList.remove("active");
+    userModal.classList.add(
+        "active"
+    );
 
 };
 
 
-/* ==================================================
+/* ==========================================
    TABS
-================================================== */
+========================================== */
 
 const loginTab =
 document.getElementById("loginTab");
@@ -1247,58 +1351,100 @@ const registerForm =
 document.getElementById("registerForm");
 
 
-loginTab.onclick = function(){
+loginTab.onclick =
+function(){
 
     loginTab.classList.add("active");
-    registerTab.classList.remove("active");
+
+    registerTab.classList.remove(
+        "active"
+    );
 
     loginForm.classList.add("active");
-    registerForm.classList.remove("active");
+
+    registerForm.classList.remove(
+        "active"
+    );
 
 };
 
 
-registerTab.onclick = function(){
+registerTab.onclick =
+function(){
 
-    registerTab.classList.add("active");
-    loginTab.classList.remove("active");
+    registerTab.classList.add(
+        "active"
+    );
 
-    registerForm.classList.add("active");
-    loginForm.classList.remove("active");
+    loginTab.classList.remove(
+        "active"
+    );
+
+    registerForm.classList.add(
+        "active"
+    );
+
+    loginForm.classList.remove(
+        "active"
+    );
 
 };
 
 
-/* ==================================================
+/* ==========================================
    CADASTRO
-================================================== */
+========================================== */
 
-registerForm.onsubmit = function(e){
+registerForm.onsubmit =
+function(event){
 
-    e.preventDefault();
+    event.preventDefault();
+
 
     const username =
-    document.getElementById("registerUser")
-    .value.trim();
+    document.getElementById(
+        "registerUser"
+    ).value.trim();
+
 
     const password =
-    document.getElementById("registerPass")
-    .value;
+    document.getElementById(
+        "registerPass"
+    ).value;
+
 
     const password2 =
-    document.getElementById("registerPass2")
-    .value;
+    document.getElementById(
+        "registerPass2"
+    ).value;
+
 
     const message =
-    document.getElementById("registerMessage");
+    document.getElementById(
+        "registerMessage"
+    );
 
 
-    if(username.toLowerCase() === OWNER_USERNAME){
+    if(username.length < 3){
 
-        message.style.color = "#ff6675";
+        message.style.color =
+        "#ff6675";
 
         message.textContent =
-        "❌ Esse nome de usuário é reservado.";
+        "❌ O usuário precisa ter pelo menos 3 caracteres.";
+
+        return;
+
+    }
+
+
+    if(password.length < 4){
+
+        message.style.color =
+        "#ff6675";
+
+        message.textContent =
+        "❌ A senha precisa ter pelo menos 4 caracteres.";
 
         return;
 
@@ -1307,7 +1453,8 @@ registerForm.onsubmit = function(e){
 
     if(password !== password2){
 
-        message.style.color = "#ff6675";
+        message.style.color =
+        "#ff6675";
 
         message.textContent =
         "❌ As senhas não são iguais.";
@@ -1317,19 +1464,38 @@ registerForm.onsubmit = function(e){
     }
 
 
-    const users = getUsers();
+    if(
+        username.toLowerCase() ===
+        OWNER_USERNAME
+    ){
+
+        message.style.color =
+        "#ff6675";
+
+        message.textContent =
+        "❌ Esse nome é reservado.";
+
+        return;
+
+    }
+
+
+    const users =
+    getUsers();
+
 
     const exists =
     users.some(
-        u =>
-        u.username.toLowerCase() ===
+        user =>
+        user.username.toLowerCase() ===
         username.toLowerCase()
     );
 
 
     if(exists){
 
-        message.style.color = "#ff6675";
+        message.style.color =
+        "#ff6675";
 
         message.textContent =
         "❌ Esse usuário já existe.";
@@ -1345,10 +1511,10 @@ registerForm.onsubmit = function(e){
 
         password:password,
 
-        createdAt:
-        new Date().toISOString(),
+        role:"member",
 
-        role:"member"
+        createdAt:
+        new Date().toISOString()
 
     });
 
@@ -1357,7 +1523,9 @@ registerForm.onsubmit = function(e){
 
     setCurrentUser(username);
 
-    message.style.color = "#48ff9b";
+
+    message.style.color =
+    "#48ff9b";
 
     message.textContent =
     "✅ Conta criada com sucesso!";
@@ -1367,84 +1535,110 @@ registerForm.onsubmit = function(e){
 
         registerForm.reset();
 
-        authModal.classList.remove("active");
+        authModal.classList.remove(
+            "active"
+        );
 
         updateAccountButton();
 
-    },600);
+    },700);
 
 };
 
 
-/* ==================================================
+/* ==========================================
    LOGIN
-================================================== */
+========================================== */
 
-loginForm.onsubmit = function(e){
+loginForm.onsubmit =
+function(event){
 
-    e.preventDefault();
+    event.preventDefault();
+
 
     const username =
-    document.getElementById("loginUser")
-    .value.trim();
+    document.getElementById(
+        "loginUser"
+    ).value.trim();
+
 
     const password =
-    document.getElementById("loginPass")
-    .value;
+    document.getElementById(
+        "loginPass"
+    ).value;
+
 
     const message =
-    document.getElementById("loginMessage");
+    document.getElementById(
+        "loginMessage"
+    );
 
 
-    /* CONTA DONA */
+    /* ==============================
+       ADM
+    ============================== */
 
     if(
         username.toLowerCase() ===
         OWNER_USERNAME &&
-        password === OWNER_PASSWORD
+        password ===
+        OWNER_PASSWORD
     ){
 
-        setCurrentUser(OWNER_USERNAME);
+        setCurrentUser(
+            OWNER_USERNAME
+        );
 
-        message.style.color = "#48ff9b";
+
+        message.style.color =
+        "#48ff9b";
 
         message.textContent =
-        "👑 Acesso de proprietário autorizado!";
+        "👑 Acesso ADM autorizado!";
 
 
         setTimeout(function(){
 
             loginForm.reset();
 
-            authModal.classList.remove("active");
+            authModal.classList.remove(
+                "active"
+            );
 
             updateAccountButton();
 
             openAdmin();
 
-        },600);
+        },500);
+
 
         return;
 
     }
 
 
-    /* CONTAS NORMAIS */
+    /* ==============================
+       USUÁRIO NORMAL
+    ============================== */
 
-    const users = getUsers();
+    const users =
+    getUsers();
+
 
     const user =
     users.find(
-        u =>
-        u.username.toLowerCase() ===
+        item =>
+        item.username.toLowerCase() ===
         username.toLowerCase() &&
-        u.password === password
+        item.password ===
+        password
     );
 
 
     if(!user){
 
-        message.style.color = "#ff6675";
+        message.style.color =
+        "#ff6675";
 
         message.textContent =
         "❌ Usuário ou senha incorretos.";
@@ -1454,9 +1648,13 @@ loginForm.onsubmit = function(e){
     }
 
 
-    setCurrentUser(user.username);
+    setCurrentUser(
+        user.username
+    );
 
-    message.style.color = "#48ff9b";
+
+    message.style.color =
+    "#48ff9b";
 
     message.textContent =
     "✅ Login realizado!";
@@ -1466,7 +1664,9 @@ loginForm.onsubmit = function(e){
 
         loginForm.reset();
 
-        authModal.classList.remove("active");
+        authModal.classList.remove(
+            "active"
+        );
 
         updateAccountButton();
 
@@ -1475,37 +1675,15 @@ loginForm.onsubmit = function(e){
 };
 
 
-/* ==================================================
-   LOGOUT
-================================================== */
-
-document.getElementById("logoutBtn")
-.onclick = function(){
-
-    logout();
-
-    userModal.classList.remove("active");
-
-};
-
-
-document.getElementById("adminLogoutBtn")
-.onclick = function(){
-
-    logout();
-
-    adminModal.classList.remove("active");
-
-};
-
-
-/* ==================================================
-   ABRIR ADM
-================================================== */
+/* ==========================================
+   ADM
+========================================== */
 
 function openAdmin(){
 
-    const user = getCurrentUser();
+    const user =
+    getCurrentUser();
+
 
     if(
         !user ||
@@ -1514,54 +1692,68 @@ function openAdmin(){
     ){
 
         alert(
-            "❌ Você não tem permissão para acessar o painel ADM."
+            "❌ Acesso negado."
         );
 
         return;
 
     }
 
-    adminModal.classList.add("active");
+
+    adminModal.classList.add(
+        "active"
+    );
+
 
     renderUsers();
 
 }
 
 
-/* ==================================================
-   RENDERIZAR USUÁRIOS
-================================================== */
+/* ==========================================
+   LISTA DE USUÁRIOS
+========================================== */
 
 function renderUsers(){
 
-    const users = getUsers();
+    const users =
+    getUsers();
+
 
     const search =
-    document.getElementById("searchUsers")
-    .value
-    .trim()
-    .toLowerCase();
+    document.getElementById(
+        "searchUsers"
+    ).value.trim().toLowerCase();
+
 
     const table =
-    document.getElementById("userTable");
+    document.getElementById(
+        "userTable"
+    );
 
 
-    document.getElementById("totalUsers")
-    .textContent = users.length;
+    document.getElementById(
+        "totalUsers"
+    ).textContent =
+    users.length;
 
 
-    document.getElementById("loggedUser")
-    .textContent =
+    document.getElementById(
+        "loggedUser"
+    ).textContent =
     getCurrentUser() || "---";
 
 
     const filtered =
     users.filter(
-        u =>
-        u.username
+        user =>
+        user.username
         .toLowerCase()
         .includes(search)
     );
+
+
+    table.innerHTML = "";
 
 
     if(filtered.length === 0){
@@ -1574,33 +1766,43 @@ function renderUsers(){
     }
 
 
-    table.innerHTML = "";
-
-
-    filtered.forEach(function(user){
+    filtered.forEach(
+    function(user){
 
         const row =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-        row.className = "user-line";
+        row.className =
+        "user-line";
 
 
         const avatar =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-        avatar.className = "avatar";
+        avatar.className =
+        "avatar";
 
-        avatar.textContent = "👤";
+        avatar.textContent =
+        "👤";
 
 
         const info =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-        info.className = "user-info-line";
+        info.className =
+        "user-info-line";
 
 
         const name =
-        document.createElement("strong");
+        document.createElement(
+            "strong"
+        );
 
         name.textContent =
         user.username;
@@ -1612,7 +1814,9 @@ function renderUsers(){
         ){
 
             const badge =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
             badge.className =
             "admin-badge";
@@ -1620,13 +1824,17 @@ function renderUsers(){
             badge.textContent =
             "DONO";
 
-            name.appendChild(badge);
+            name.appendChild(
+                badge
+            );
 
         }
 
 
         const date =
-        document.createElement("small");
+        document.createElement(
+            "small"
+        );
 
 
         if(user.createdAt){
@@ -1635,7 +1843,9 @@ function renderUsers(){
             "Criada em " +
             new Date(
                 user.createdAt
-            ).toLocaleDateString("pt-BR");
+            ).toLocaleDateString(
+                "pt-BR"
+            );
 
         }else{
 
@@ -1646,10 +1856,12 @@ function renderUsers(){
 
 
         info.appendChild(name);
+
         info.appendChild(date);
 
 
         row.appendChild(avatar);
+
         row.appendChild(info);
 
 
@@ -1659,7 +1871,9 @@ function renderUsers(){
         ){
 
             const deleteBtn =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
             deleteBtn.className =
             "delete-btn";
@@ -1671,26 +1885,32 @@ function renderUsers(){
             deleteBtn.onclick =
             function(){
 
-                deleteUser(user.username);
+                deleteUser(
+                    user.username
+                );
 
             };
 
 
-            row.appendChild(deleteBtn);
+            row.appendChild(
+                deleteBtn
+            );
 
         }
 
 
-        table.appendChild(row);
+        table.appendChild(
+            row
+        );
 
     });
 
 }
 
 
-/* ==================================================
-   EXCLUIR
-================================================== */
+/* ==========================================
+   EXCLUIR USUÁRIO
+========================================== */
 
 function deleteUser(username){
 
@@ -1723,8 +1943,9 @@ function deleteUser(username){
 
     const users =
     getUsers().filter(
-        u =>
-        u.username !== username
+        user =>
+        user.username !==
+        username
     );
 
 
@@ -1735,55 +1956,159 @@ function deleteUser(username){
 }
 
 
-/* ==================================================
-   PESQUISA
-================================================== */
+/* ==========================================
+   PESQUISA ADM
+========================================== */
 
-document.getElementById("searchUsers")
-.addEventListener(
+document.getElementById(
+    "searchUsers"
+).addEventListener(
     "input",
     renderUsers
 );
 
 
-/* ==================================================
-   ESC
-================================================== */
+/* ==========================================
+   LOGOUT
+========================================== */
 
-document.addEventListener(
-"keydown",
-function(e){
+document.getElementById(
+    "logoutBtn"
+).onclick =
+function(){
 
-    if(e.key === "Escape"){
+    logout();
 
-        authModal.classList.remove("active");
-
-        userModal.classList.remove("active");
-
-        adminModal.classList.remove("active");
-
-    }
-
-});
-
-
-/* ==================================================
-   MOBILE
-================================================== */
-
-document.getElementById("menuBtn")
-.onclick = function(){
-
-    alert(
-        "Use o menu e role a página para acessar as seções da BLOXMAXY."
+    userModal.classList.remove(
+        "active"
     );
 
 };
 
 
-/* ==================================================
+document.getElementById(
+    "adminLogoutBtn"
+).onclick =
+function(){
+
+    logout();
+
+    adminModal.classList.remove(
+        "active"
+    );
+
+};
+
+
+/* ==========================================
+   FECHAR MODAIS
+========================================== */
+
+document.getElementById(
+    "closeAuth"
+).onclick =
+function(){
+
+    authModal.classList.remove(
+        "active"
+    );
+
+};
+
+
+document.getElementById(
+    "closeUser"
+).onclick =
+function(){
+
+    userModal.classList.remove(
+        "active"
+    );
+
+};
+
+
+document.getElementById(
+    "closeAdmin"
+).onclick =
+function(){
+
+    adminModal.classList.remove(
+        "active"
+    );
+
+};
+
+
+/* ==========================================
+   MENU MOBILE
+========================================== */
+
+document.getElementById(
+    "menuBtn"
+).onclick =
+function(){
+
+    mobileNav.classList.toggle(
+        "active"
+    );
+
+};
+
+
+document.querySelectorAll(
+    "#mobileNav a"
+).forEach(
+    function(link){
+
+        link.onclick =
+        function(){
+
+            mobileNav.classList.remove(
+                "active"
+            );
+
+        };
+
+    }
+);
+
+
+/* ==========================================
+   ESC
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            authModal.classList.remove(
+                "active"
+            );
+
+            userModal.classList.remove(
+                "active"
+            );
+
+            adminModal.classList.remove(
+                "active"
+            );
+
+            mobileNav.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
+
+
+/* ==========================================
    INICIAR
-================================================== */
+========================================== */
 
 updateAccountButton();
 
